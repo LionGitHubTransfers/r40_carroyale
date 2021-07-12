@@ -4,25 +4,30 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public Transform _target; // в инспекторе задаём объект движения
+    public Transform TransformMove; // в инспекторе задаём объект движения
+    public Transform TransformRotate; // в инспекторе задаём объект движения
     public float moveSpeed = 0.1f; // скорость движения объекта
     public DynamicJoystick JoystickControl;
+    public Rigidbody rb;
 
-    void Update()
+    void FixedUpdate()
     {
-        float forwardMove = Input.GetAxis("Vertical") * moveSpeed;
-        float sideMove = Input.GetAxis("Horizontal") * moveSpeed;
+
+        //Vector3 direction = Vector3.forward * JoystickControl.Vertical + Vector3.right * JoystickControl.Horizontal;
+        //rb.AddForce(direction * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+
+
 
         //var pos = _target.forward * forwardMove +
         //                    _target.right * sideMove;
 
-        var pos = new Vector3(forwardMove, 0, sideMove);
+        //var pos = new Vector3(forwardMove, 0, sideMove);
 
         Vector3 direction = Vector3.forward * JoystickControl.Vertical + Vector3.right * JoystickControl.Horizontal;
         if (direction != Vector3.zero)
         {
-            _target.LookAt(_target.position + direction, Vector3.up);
-            _target.position += direction;
+            TransformMove.position += direction * moveSpeed * Time.fixedDeltaTime;
+            TransformRotate.LookAt(TransformRotate.position + direction, Vector3.up);
         }
 
 
