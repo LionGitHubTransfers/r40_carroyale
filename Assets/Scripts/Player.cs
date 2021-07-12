@@ -9,34 +9,89 @@ public class Player : MonoBehaviour
     public float moveSpeed = 0.1f; // скорость движения объекта
     public DynamicJoystick JoystickControl;
     public Rigidbody rb;
+    public CharacterController CharController;
+
+    public float DMG = 10;
+
+    public Weapon TempItem;
+    public Weapon CurrentWeapon;
+
+    private void Start()
+    {
+        CurrentWeapon.Init(this);
+    }
 
     void FixedUpdate()
     {
-
-        //Vector3 direction = Vector3.forward * JoystickControl.Vertical + Vector3.right * JoystickControl.Horizontal;
-        //rb.AddForce(direction * moveSpeed * Time.fixedDeltaTime, ForceMode.VelocityChange);
-
-
-
-        //var pos = _target.forward * forwardMove +
-        //                    _target.right * sideMove;
-
-        //var pos = new Vector3(forwardMove, 0, sideMove);
-
         Vector3 direction = Vector3.forward * JoystickControl.Vertical + Vector3.right * JoystickControl.Horizontal;
         if (direction != Vector3.zero)
         {
-            TransformMove.position += direction * moveSpeed * Time.fixedDeltaTime;
+            CharController.Move(direction * moveSpeed * Time.fixedDeltaTime); 
             TransformRotate.LookAt(TransformRotate.position + direction, Vector3.up);
         }
 
+        if(TransformMove.position.y > 0.08f)
+        {
+            var tmp = TransformMove.position;
+            tmp.y = 0;
+            TransformMove.position = tmp;
+        }
+    }
 
-        //if (Vector3.Distance(TransformPlatform.position, _targetMovePosition) < 0.003f)
-        //{
-        //    TransformPlatform.LookAt(_targetMovePosition, Vector3.up);
-        //}
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag == Constants.TAG_OBSTACLE)
+    //    {
+    //        var obstacle = other.GetComponent<Obstacle>();
+    //        obstacle.SetDamage(DMG);
+    //    }
 
-        //TransformPlatform.position = Vector3.MoveTowards(TransformPlatform.position, _targetMovePosition, GameController.Controller.PlayerSpead * Time.deltaTime);
+    //    if (other.tag == Constants.TAG_ITEM)
+    //    {
+    //        var item = other.GetComponent<Item>();
+    //        TempItem.SetActive(true);
+    //        item.PickUp();
+    //    }
+    //}
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+
+    //    if (collision.transform.tag == Constants.TAG_OBSTACLE)
+    //    {
+    //        var obstacle = collision.transform.GetComponent<Obstacle>();
+    //        obstacle.SetDamage(DMG);
+    //    }
+
+    //    if (collision.transform.tag == Constants.TAG_ITEM)
+    //    {
+    //        var item = collision.transform.GetComponent<Item>();
+    //        TempItem.SetActive(true);
+    //        item.PickUp();
+    //    }
+    //}
+
+    public void TriggerWeapon(Collider other)
+    {
+        if (other.tag == Constants.TAG_OBSTACLE)
+        {
+            var obstacle = other.GetComponent<Obstacle>();
+            obstacle.SetDamage(DMG);
+        }
+
+        if (other.tag == Constants.TAG_ITEM)
+        {
+            var item = other.GetComponent<Item>();
+            TempItem.gameObject.SetActive(true);
+            TempItem.Init(this);
+
+            if (CurrentWeapon.gameObject.activeSelf)
+                CurrentWeapon.gameObject.SetActive(false);
+            else
+                TempItem.transform.localScale = new Vector3(0.5f, 0.5f, 1f);
+            item.PickUp();
+            DMG += 20;
+        }
     }
 
 }
