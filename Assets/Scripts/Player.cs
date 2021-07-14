@@ -24,8 +24,10 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 direction = Vector3.forward * JoystickControl.Vertical + Vector3.right * JoystickControl.Horizontal;
+        
         if (direction != Vector3.zero)
         {
+            //Debug.Log($"JoystickControl.Vertical {JoystickControl.Vertical} JoystickControl.Horizontal {JoystickControl.Horizontal}" );
             CharController.Move(direction * moveSpeed * Time.fixedDeltaTime); 
             TransformRotate.LookAt(TransformRotate.position + direction, Vector3.up);
         }
