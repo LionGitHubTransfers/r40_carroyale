@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public Player Characher;
+    public GameObject WeaponGO;
+    public float Damage = 1;
+    public int IdWeapont;
+
+    private Player _characher;
 
     public void Init(Player pl)
     {
-        Characher = pl;
+        _characher = pl;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Characher.TriggerWeapon(other);
+        _characher.TriggerWeapon(other);
+    }
+
+    public void SetActive(bool flag)
+    {
+        WeaponGO.SetActive(flag);
     }
 }

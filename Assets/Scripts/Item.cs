@@ -6,6 +6,9 @@ public class Item : MonoBehaviour
 {
     public Transform ItemTransform;
     public Rigidbody ItemRigidbody;
+
+    public int IdWeapont;
+
     public void Init()
     {
         gameObject.SetActive(true);

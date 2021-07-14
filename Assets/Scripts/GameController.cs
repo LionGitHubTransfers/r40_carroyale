@@ -6,6 +6,8 @@ public class GameController : MonoBehaviour
 {
     public static GameController Controller;
 
+    public UiController ControllerUI;
+
     public Transform PatentItems;
     public Transform PatentFragment;
 
