@@ -11,7 +11,13 @@ public class GameController : MonoBehaviour
     public Transform PatentItems;
     public Transform PatentFragment;
 
+    public Item SpawnItemArmor;
+    public List<Item> ListSpawnItemsWeapon;
+
     public Transform PatentItemsl { get; internal set; }
+
+    private int _countSpawnArmor = 0;
+    private int _countSpawnWeapon = 0;
 
     private void Awake()
     {
@@ -24,14 +30,17 @@ public class GameController : MonoBehaviour
         Destroy(this);
     }
 
-    void Start()
+    public Item GetItem()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if(_countSpawnArmor <= _countSpawnWeapon)
+        {
+            _countSpawnArmor++;
+            return SpawnItemArmor;
+        }
+        else
+        {
+            _countSpawnWeapon++;
+            return ListSpawnItemsWeapon[ListSpawnItemsWeapon.Count - 1];
+        }
     }
 }

@@ -11,9 +11,12 @@ GameObject:
   - component: {fileID: 1777019522731511761}
   - component: {fileID: 3193350150296893978}
   - component: {fileID: 6094480483006484042}
+  - component: {fileID: 677772811644940829}
+  - component: {fileID: 3853389016659411779}
+  - component: {fileID: 1028284331551060006}
   m_Layer: 0
   m_Name: flap
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,3 +85,47 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &677772811644940829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5513017146815390631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d83df129cfd833548a97194c16b1f636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemTransform: {fileID: 0}
+  ItemRigidbody: {fileID: 0}
+  IdWeapont: 0
+--- !u!65 &3853389016659411779
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5513017146815390631}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.0244937, y: 1.9030905, z: 4.8639426}
+  m_Center: {x: 0.007152557, y: -0.29102182, z: 0.90700084}
+--- !u!54 &1028284331551060006
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5513017146815390631}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0

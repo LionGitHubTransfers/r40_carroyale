@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public float DMG = 10;
 
     public List<float> LevelDamage = new List<float>() { 10, 20, 30, 40, 50 };
+    public List<float> LevelSize = new List<float>() { .6f, .7f, .8f, .9f, 1f };
 
     [Header("Weapons")]
     public Weapon[] WeaponsList;
@@ -52,21 +53,19 @@ public class Player : MonoBehaviour
         CharController.Move(direction * MoveSpeed * Time.fixedDeltaTime);
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.tag == Constants.TAG_OBSTACLE)
-    //    {
-    //        var obstacle = other.GetComponent<Obstacle>();
-    //        obstacle.SetDamage(DMG);
-    //    }
+    private void OnTriggerEnter(Collider other)
+    {
+        //if (other.tag == Constants.TAG_OBSTACLE)
+        //{
+        //    var obstacle = other.GetComponent<Obstacle>();
+        //    obstacle.SetDamage(DMG);
+        //}
 
-    //    if (other.tag == Constants.TAG_ITEM)
-    //    {
-    //        var item = other.GetComponent<Item>();
-    //        TempItem.SetActive(true);
-    //        item.PickUp();
-    //    }
-    //}
+        if (other.tag == Constants.TAG_ITEM)
+        {
+            TriggerWeapon(other);
+        }
+    }
 
 
     public void TriggerWeapon(Collider other)
@@ -84,14 +83,25 @@ public class Player : MonoBehaviour
             if (item.IdWeapont == _currentWeapon.IdWeapont)
                 return;
 
-            if (PutWeapon(item.IdWeapont))
+            if (PutItem(item.IdWeapont))
                 item.PickUp();
 
         }
     }
 
-    public bool PutWeapon(int idWeapon)
+    public bool PutItem(int idWeapon)
     {
+        if (idWeapon == -1)
+        {
+            if (_currentLvlIndex >= 4)
+                return false;
+
+            _currentLvlIndex++;
+
+            CharController.transform.localScale = Vector3.one * LevelSize[_currentLvlIndex];
+            return true;
+        }
+
         _currentWeapon.SetActive(false);
         _currentWeapon = null;
 

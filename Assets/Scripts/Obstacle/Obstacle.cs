@@ -12,7 +12,8 @@ public class Obstacle : MonoBehaviour
     }
 
     public float Armor = 0;
-    public Item SpawnItem;
+    //public Item SpawnItem;
+    public Transform PointSpawnItem;
 
     public List<FragmentGroup> FragmentGroups;
 
@@ -34,7 +35,8 @@ public class Obstacle : MonoBehaviour
 
     private void DestroyObstacle()
     {
-        SpawnItem.Init();
+        var item = Instantiate(GameController.Controller.GetItem(), PointSpawnItem.position, PointSpawnItem.rotation, GameController.Controller.PatentItems);
+        item.Init();
         Destroy(gameObject);
     }
 }

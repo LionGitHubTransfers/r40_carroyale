@@ -12,13 +12,12 @@ public class Item : MonoBehaviour
     public void Init()
     {
         gameObject.SetActive(true);
+      //  ItemTransform.parent = GameController.Controller.PatentItems;
         StartCoroutine(SpawnEffect());
     }
 
     private IEnumerator SpawnEffect()
     {
-        ItemTransform.parent = GameController.Controller.PatentItems;
-
         float time = 0;
         ItemRigidbody.AddForce(0, 5, 0);
         while (time < 0.2f)
