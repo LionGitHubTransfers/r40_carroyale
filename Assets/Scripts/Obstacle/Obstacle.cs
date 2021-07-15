@@ -21,7 +21,7 @@ public class Obstacle : MonoBehaviour
 
     public void SetDamage(float dmg)
     {
-        if(dmg >= Armor)
+        if(dmg >= Armor && _countHit < FragmentGroups.Count)
         {
             foreach (Fragment fg in FragmentGroups[_countHit].Fragments)
                 fg.Init();
