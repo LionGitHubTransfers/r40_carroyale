@@ -8,6 +8,8 @@ public class Weapon : MonoBehaviour
     public float Damage = 1;
     public int IdWeapont;
 
+    public bool IsCumulativeDamage = false;
+
     private Player _characher;
 
     public void Init(Player pl)
@@ -17,7 +19,18 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        _characher.TriggerWeapon(other);
+        if (IsCumulativeDamage)
+            return;
+
+        _characher.TriggerEnterWeapon(other);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (!IsCumulativeDamage)
+            return;
+
+        _characher.TriggerStayWeapon(other);
     }
 
     public void SetActive(bool flag)

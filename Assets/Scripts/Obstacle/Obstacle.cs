@@ -12,6 +12,7 @@ public class Obstacle : MonoBehaviour
     }
 
     public float Armor = 0;
+    public float HealthFragmentGroup = 10;
     //public Item SpawnItem;
     public Transform PointSpawnItem;
 
@@ -19,17 +20,28 @@ public class Obstacle : MonoBehaviour
 
     private int _countHit = 0;
 
+    private float _currentDamage = 0;
+
     public void SetDamage(float dmg)
     {
-        if(dmg >= Armor && _countHit < FragmentGroups.Count)
+        _currentDamage += dmg;
+
+        if (dmg >= Armor && _countHit < FragmentGroups.Count && _currentDamage >= HealthFragmentGroup)
         {
-            foreach (Fragment fg in FragmentGroups[_countHit].Fragments)
-                fg.Init();
+            while(_currentDamage >= HealthFragmentGroup)
+            {
+                foreach (Fragment fg in FragmentGroups[_countHit].Fragments)
+                    fg.Init();
 
-            _countHit++;
+                _countHit++;
+                _currentDamage -= HealthFragmentGroup;
 
-            if (_countHit >= FragmentGroups.Count)
-                DestroyObstacle();
+                if (_countHit >= FragmentGroups.Count)
+                {
+                    DestroyObstacle();
+                    return;
+                }
+            }
         }
     }
 

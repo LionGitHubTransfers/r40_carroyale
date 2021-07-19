@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
         }
 
         _currentWeapon = WeaponsList[0];
+        CharController.transform.localScale = Vector3.one * LevelSize[_currentLvlIndex];
         _currentWeapon.SetActive(true);
     }
 
@@ -63,17 +64,38 @@ public class Player : MonoBehaviour
 
         if (other.tag == Constants.TAG_ITEM)
         {
-            TriggerWeapon(other);
+            TriggerEnterWeapon(other);
         }
     }
 
 
-    public void TriggerWeapon(Collider other)
+    public void TriggerEnterWeapon(Collider other)
     {
         if (other.tag == Constants.TAG_OBSTACLE)
         {
             var obstacle = other.GetComponent<Obstacle>();
             obstacle.SetDamage(_currentDamage);
+        }
+
+        if (other.tag == Constants.TAG_ITEM)
+        {
+            var item = other.GetComponent<Item>();
+
+            if (item.IdWeapont == _currentWeapon.IdWeapont)
+                return;
+
+            if (PutItem(item.IdWeapont))
+                item.PickUp();
+
+        }
+    }
+
+    public void TriggerStayWeapon(Collider other)
+    {
+        if (other.tag == Constants.TAG_OBSTACLE)
+        {
+            var obstacle = other.GetComponent<Obstacle>();
+            obstacle.SetDamage(_currentDamage * Time.deltaTime);
         }
 
         if (other.tag == Constants.TAG_ITEM)

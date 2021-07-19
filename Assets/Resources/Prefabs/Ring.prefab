@@ -9564,7 +9564,7 @@ GameObject:
   - component: {fileID: 6516820600580122799}
   - component: {fileID: 6516820600580122792}
   m_Layer: 0
-  m_Name: "\u043F1"
+  m_Name: Ring
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
