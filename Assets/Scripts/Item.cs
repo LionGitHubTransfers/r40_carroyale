@@ -5,7 +5,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public Transform ItemTransform;
-    public Rigidbody ItemRigidbody;
+    public Collider ItemCollider;
 
     public int IdWeapont;
 
@@ -18,16 +18,8 @@ public class Item : MonoBehaviour
 
     private IEnumerator SpawnEffect()
     {
-        float time = 0;
-        ItemRigidbody.AddForce(0, 5, 0);
-        while (time < 0.2f)
-        {
-            time += Time.deltaTime;
-
-            ItemTransform.localScale = Vector3.one * (time / 0.2f);
-
-            yield return null;
-        }
+        yield return new WaitForSeconds(1f);
+        ItemCollider.enabled = true;
     }
 
     public void PickUp()

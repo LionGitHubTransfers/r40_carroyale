@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour
 
     public UiController ControllerUI;
 
-    public Transform PatentItems;
+    public Transform ParentItems;
     public Transform PatentFragment;
 
     public Item SpawnItemArmor;
