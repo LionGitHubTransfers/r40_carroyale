@@ -124,7 +124,6 @@ GameObject:
   - component: {fileID: 4862813103005353911}
   - component: {fileID: 40617817122059904}
   - component: {fileID: 2572824555977800691}
-  - component: {fileID: 7100566377689667047}
   m_Layer: 0
   m_Name: 4 Boer
   m_TagString: Untagged
@@ -196,21 +195,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7100566377689667047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7398137929576433220}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0456591e3f37fe44806681eed714d1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TargetRotation: {fileID: 4862813103005353911}
-  Axis: 0
-  SpeedRotation: 400
 --- !u!1001 &8391886508199430139
 PrefabInstance:
   m_ObjectHideFlags: 0

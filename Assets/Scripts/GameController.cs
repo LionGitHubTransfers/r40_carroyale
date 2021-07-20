@@ -40,7 +40,8 @@ public class GameController : MonoBehaviour
         else
         {
             _countSpawnWeapon++;
-            return ListSpawnItemsWeapon[ListSpawnItemsWeapon.Count - 1];
+            return ListSpawnItemsWeapon[Random.Range(1, ListSpawnItemsWeapon.Count - 1)];
+           // return ListSpawnItemsWeapon[ListSpawnItemsWeapon.Count - 1];
         }
     }
 }

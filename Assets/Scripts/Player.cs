@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 
     public List<float> LevelDamage = new List<float>() { 10, 20, 30, 40, 50 };
     public List<float> LevelSize = new List<float>() { .6f, .7f, .8f, .9f, 1f };
+    public List<GameObject> LevelSkin;
 
     [Header("Weapons")]
     public Weapon[] WeaponsList;
@@ -120,7 +121,11 @@ public class Player : MonoBehaviour
 
             _currentLvlIndex++;
 
-            CharController.transform.localScale = Vector3.one * LevelSize[_currentLvlIndex];
+            //CharController.transform.localScale = Vector3.one * LevelSize[_currentLvlIndex];
+            StopAllCoroutines();
+            StartCoroutine(SetSize(Vector3.one * LevelSize[_currentLvlIndex]));
+
+            LevelSkin[_currentLvlIndex].SetActive(true);
             return true;
         }
 
@@ -143,6 +148,23 @@ public class Player : MonoBehaviour
         }
 
         return true;
+    }
+
+    private IEnumerator SetSize(Vector3 targetSize)
+    {
+        float time = 0;
+
+        Vector3 startSize = CharController.transform.localScale;
+
+        while (time < 1)
+        {
+            time += Time.deltaTime;
+            CharController.transform.localScale = Vector3.Lerp(startSize, targetSize, time);
+
+            yield return null;
+        }
+
+        CharController.transform.localScale = targetSize;
     }
 
 }
