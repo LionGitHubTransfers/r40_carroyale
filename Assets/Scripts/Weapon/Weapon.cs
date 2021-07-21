@@ -22,6 +22,9 @@ public class Weapon : MonoBehaviour
         if (IsCumulativeDamage)
             return;
 
+        //if (other.gameObject == _characher.gameObject)
+        //    return;
+
         _characher.TriggerEnterWeapon(other);
     }
 

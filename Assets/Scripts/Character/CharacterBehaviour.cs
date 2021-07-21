@@ -30,6 +30,7 @@ public class CharacterBehaviour : MonoBehaviour
         CharController.transform.localScale = Vector3.one * GameController.Controller.Config.LevelSize[_currentLvlIndex];
         _currentWeapon.SetActive(true);
         _currentSpeed = GameController.Controller.Config.LevelSpeed[_currentLvlIndex];
+
     }
 
     protected virtual void Move(Vector3 direction)

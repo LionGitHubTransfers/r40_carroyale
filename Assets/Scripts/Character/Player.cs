@@ -11,6 +11,7 @@ public class Player : CharacterBehaviour
     void FixedUpdate()
     {
         Vector3 direction = Vector3.forward * _joystickControl.Vertical + Vector3.right * _joystickControl.Horizontal;
+        //Debug.Log($"Player {direction}");
         base.Move(direction);
     }
 }
