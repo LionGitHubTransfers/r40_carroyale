@@ -10,9 +10,9 @@ public class Weapon : MonoBehaviour
 
     public bool IsCumulativeDamage = false;
 
-    private Player _characher;
+    private CharacterBehaviour _characher;
 
-    public void Init(Player pl)
+    public void Init(CharacterBehaviour pl)
     {
         _characher = pl;
     }

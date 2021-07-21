@@ -7,12 +7,13 @@ public class GameController : MonoBehaviour
     public static GameController Controller;
 
     public UiController ControllerUI;
+    public Config Config;
 
     public Transform ParentItems;
     public Transform PatentFragment;
 
-    public Item SpawnItemArmor;
-    public List<Item> ListSpawnItemsWeapon;
+   // public Item SpawnItemArmor;
+    //public List<Item> ListSpawnItemsWeapon;
 
     public Transform PatentItemsl { get; internal set; }
 
@@ -35,13 +36,12 @@ public class GameController : MonoBehaviour
         if(_countSpawnArmor <= _countSpawnWeapon)
         {
             _countSpawnArmor++;
-            return SpawnItemArmor;
+            return Config.SpawnItemArmor;
         }
         else
         {
             _countSpawnWeapon++;
-            return ListSpawnItemsWeapon[Random.Range(1, ListSpawnItemsWeapon.Count - 1)];
-           // return ListSpawnItemsWeapon[ListSpawnItemsWeapon.Count - 1];
+            return Config.ListSpawnItemsWeapon[Random.Range(0, Config.ListSpawnItemsWeapon.Count)];
         }
     }
 }

@@ -635,7 +635,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 360409449}
-  m_LocalRotation: {x: 0.5257311, y: 0.00000002195493, z: -0.000000013568893, w: 0.85065085}
+  m_LocalRotation: {x: 0.5257311, y: -0.000000021954936, z: 0.000000013568896, w: 0.85065085}
   m_LocalPosition: {x: 0, y: 80, z: -40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1641,7 +1641,7 @@ Transform:
   m_GameObject: {fileID: 1069147932}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 1, z: 100}
+  m_LocalScale: {x: 500, y: 1, z: 500}
   m_Children: []
   m_Father: {fileID: 223372251}
   m_RootOrder: 0
@@ -1754,15 +1754,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ControllerUI: {fileID: 25843692}
+  Config: {fileID: 11400000, guid: f225f7991e7361a4fbf30ff6223ab5a3, type: 2}
   ParentItems: {fileID: 1952494887}
   PatentFragment: {fileID: 1464307648}
-  SpawnItemArmor: {fileID: 8983464445581482948, guid: baeae2df65ec8294797d914f2cb21442, type: 3}
-  ListSpawnItemsWeapon:
-  - {fileID: 5805718495123054702, guid: 925cdc2138e5a30458e1fc9b949edea7, type: 3}
-  - {fileID: 508317539407149372, guid: 7d169713a03304d49adae4604627db5f, type: 3}
-  - {fileID: 2799182791097638178, guid: 2f7a45c191a925b4f98e110f31ff0e8a, type: 3}
-  - {fileID: 6112930958499116947, guid: 08764f771c7a3aa40a984b88037f9441, type: 3}
-  - {fileID: 7867429019765649407, guid: 49ce7193c52d99e4182ac30ebfc72653, type: 3}
 --- !u!4 &1162605898
 Transform:
   m_ObjectHideFlags: 0
@@ -2434,7 +2428,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1944695719}
-  m_LocalRotation: {x: 0.5257311, y: 0.00000002195493, z: -0.000000013568893, w: 0.85065085}
+  m_LocalRotation: {x: 0.5257311, y: -0.000000021954936, z: 0.000000013568896, w: 0.85065085}
   m_LocalPosition: {x: 26.1, y: 80, z: -54.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -2721,20 +2715,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TransformRotate: {fileID: 2071527096}
   CharController: {fileID: 2027653995}
-  MoveSpeed: 20
-  DMG: 10
-  LevelDamage:
-  - 10
-  - 20
-  - 30
-  - 40
-  - 50
-  LevelSize:
-  - 0.6
-  - 0.7
-  - 0.8
-  - 0.9
-  - 1
   LevelSkin:
   - {fileID: 1880428157}
   - {fileID: 1880428161}
@@ -2803,7 +2783,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027653992}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 6
@@ -3606,7 +3586,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1932070597094814204
 MonoBehaviour:
   m_ObjectHideFlags: 0

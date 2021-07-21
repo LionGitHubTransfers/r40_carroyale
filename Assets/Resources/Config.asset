@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa120f48d1d58d64da69228ef9ae46d9, type: 3}
+  m_Name: Config
+  m_EditorClassIdentifier: 
+  LevelDamage:
+  - 10
+  - 20
+  - 30
+  - 40
+  - 50
+  LevelSpeed:
+  - 10
+  - 20
+  - 30
+  - 40
+  - 50
+  LevelSize:
+  - 0.6
+  - 0.7
+  - 0.8
+  - 0.9
+  - 1
+  SpawnItemArmor: {fileID: 8983464445581482948, guid: baeae2df65ec8294797d914f2cb21442, type: 3}
+  ListSpawnItemsWeapon:
+  - {fileID: 5805718495123054702, guid: 925cdc2138e5a30458e1fc9b949edea7, type: 3}
+  - {fileID: 508317539407149372, guid: 7d169713a03304d49adae4604627db5f, type: 3}
+  - {fileID: 2799182791097638178, guid: 2f7a45c191a925b4f98e110f31ff0e8a, type: 3}
+  - {fileID: 6112930958499116947, guid: 08764f771c7a3aa40a984b88037f9441, type: 3}
+  - {fileID: 7867429019765649407, guid: 49ce7193c52d99e4182ac30ebfc72653, type: 3}

@@ -2557,7 +2557,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9aec1ff255e08046adbb65e8a25ac7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Armor: 20
+  Armor: 0
+  HealthFragmentGroup: 0
   PointSpawnItem: {fileID: 2072851870631851737}
   FragmentGroups:
   - Fragments:
