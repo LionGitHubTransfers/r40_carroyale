@@ -30,6 +30,12 @@ MonoBehaviour:
   - 0.8
   - 0.9
   - 1
+  LevelHealth:
+  - 10
+  - 15
+  - 20
+  - 25
+  - 30
   SpawnItemArmor: {fileID: 8983464445581482948, guid: baeae2df65ec8294797d914f2cb21442, type: 3}
   ListSpawnItemsWeapon:
   - {fileID: 5805718495123054702, guid: 925cdc2138e5a30458e1fc9b949edea7, type: 3}
@@ -37,3 +43,6 @@ MonoBehaviour:
   - {fileID: 2799182791097638178, guid: 2f7a45c191a925b4f98e110f31ff0e8a, type: 3}
   - {fileID: 6112930958499116947, guid: 08764f771c7a3aa40a984b88037f9441, type: 3}
   - {fileID: 7867429019765649407, guid: 49ce7193c52d99e4182ac30ebfc72653, type: 3}
+  PrefabPlauer: {fileID: 4256278088614296358, guid: 0b61d7a813a42674097bee1ce52ef44a, type: 3}
+  PrefabEnemy: {fileID: 5039766289456248751, guid: 8b9fd56d7e29de541a87ed78be1da089, type: 3}
+  StatusBarCharacter: {fileID: 8037382222824966382, guid: ff798ad89e5d3ce4485ed98904c2eb8a, type: 3}

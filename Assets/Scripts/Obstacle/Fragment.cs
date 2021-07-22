@@ -7,10 +7,14 @@ public class Fragment : MonoBehaviour
     private Collider _childCollider;
     private Rigidbody _childRigidbody;
 
-    private void Start()
+    public void Awake()
     {
         _childCollider = GetComponent<Collider>();
         _childRigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
     }
 
     public void Init()

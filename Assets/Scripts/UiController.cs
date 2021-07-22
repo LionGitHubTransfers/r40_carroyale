@@ -5,6 +5,15 @@ using UnityEngine;
 public class UiController : MonoBehaviour
 {
     public DynamicJoystick JoystickControl;
+    public Camera MainCamera;
+    public Transform ContainerCharacterStatusBar;
+
+    [Header("Offsets")]
+    public Transform OffsetLeft;
+    public Transform OffsetRight;
+    public Transform OffsetTop;
+    public Transform OffsetBottom;
+
 
     // Start is called before the first frame update
     void Start()

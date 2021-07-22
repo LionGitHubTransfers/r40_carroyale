@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : CharacterBehaviour
 {
-    public float speed = 50;
     public CharacterController character;
 
     public float RadiusRing = 30;
@@ -38,12 +37,11 @@ public class Enemy : CharacterBehaviour
             var pos = Random.insideUnitCircle * RadiusRing;
             _targetPos.x = pos.x;
             _targetPos.z = pos.y;
-            Debug.Log(_targetPos);
         }
         else
         {
             transform.LookAt(_targetPos);
-            character.Move(moveDirection.normalized * speed * Time.deltaTime);
+            character.Move(moveDirection.normalized * _currentSpeed * Time.deltaTime);
         }
 
         _time += Time.deltaTime;

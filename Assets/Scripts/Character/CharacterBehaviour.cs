@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,20 @@ public class CharacterBehaviour : MonoBehaviour
 {
     public Transform TransformRotate;
     public CharacterController CharController;
+    public GameObject WeaponGroups;
 
     public List<GameObject> LevelSkin;
     public Weapon[] WeaponsList;
+
+    [Serializable]
+    public struct FragmentGroup
+    {
+        public Fragment[] Fragments;
+    }
+
+    public List<FragmentGroup> FragmentGroups;
+
+    private GameObject CharacterGameObject;
 
     protected Weapon _currentWeapon;
     protected int _currentLvlIndex = 0;
@@ -16,9 +28,17 @@ public class CharacterBehaviour : MonoBehaviour
     protected float _currentDamage => GameController.Controller.Config.LevelDamage[_currentLvlIndex] + _currentWeapon.Damage;
 
     protected Vector3 direction;
-    //private DynamicJoystick _joystickControl => GameController.Controller.ControllerUI.JoystickControl;
+
+    private float _currentHealth;
+
+    private bool _isDeath;
 
     private void Start()
+    {
+        Init();
+    }
+
+    protected virtual void Init()
     {
         for (int i = 0; i < WeaponsList.Length; i++)
         {
@@ -30,7 +50,10 @@ public class CharacterBehaviour : MonoBehaviour
         CharController.transform.localScale = Vector3.one * GameController.Controller.Config.LevelSize[_currentLvlIndex];
         _currentWeapon.SetActive(true);
         _currentSpeed = GameController.Controller.Config.LevelSpeed[_currentLvlIndex];
+        _currentHealth = GameController.Controller.Config.LevelHealth[_currentLvlIndex];
 
+        CharacterGameObject = gameObject;
+        _isDeath = false;
     }
 
     protected virtual void Move(Vector3 direction)
@@ -74,6 +97,15 @@ public class CharacterBehaviour : MonoBehaviour
             if (PutItem(item.IdWeapont))
                 item.PickUp();
         }
+
+        if (other.tag == Constants.TAG_CHARACTER)
+        {
+            if(other.gameObject != CharacterGameObject)
+            {
+                var character = other.GetComponent<CharacterBehaviour>();
+                character.SetDamage(_currentDamage);
+            }
+        }
     }
 
     public virtual void TriggerStayWeapon(Collider other)
@@ -93,6 +125,15 @@ public class CharacterBehaviour : MonoBehaviour
 
             if (PutItem(item.IdWeapont))
                 item.PickUp();
+        }
+
+        if (other.tag == Constants.TAG_CHARACTER)
+        {
+            if (other.gameObject != CharacterGameObject)
+            {
+                var character = other.GetComponent<CharacterBehaviour>();
+                character.SetDamage(_currentDamage);
+            }
         }
     }
 
@@ -115,6 +156,7 @@ public class CharacterBehaviour : MonoBehaviour
         _currentLvlIndex++;
 
         _currentSpeed = GameController.Controller.Config.LevelSpeed[_currentLvlIndex];
+        _currentHealth = GameController.Controller.Config.LevelHealth[_currentLvlIndex];
         LevelSkin[_currentLvlIndex].SetActive(true);
 
         StopAllCoroutines();
@@ -155,5 +197,28 @@ public class CharacterBehaviour : MonoBehaviour
         }
 
         CharController.transform.localScale = targetSize;
+    }
+
+    public void SetDamage(float dmg)
+    {
+        _currentHealth -= dmg;
+
+        if(_currentHealth <= 0 && _isDeath == false)
+        {
+            _isDeath = true;
+            DestroyCgaracter();
+        }
+    }
+
+    private void DestroyCgaracter()
+    {
+        for(int i = 0; i <= _currentLvlIndex; i++)
+            if(i< FragmentGroups.Count)
+                foreach (Fragment fg in FragmentGroups[i].Fragments)
+                    fg.Init();
+
+        this.enabled = false;
+        CharController.enabled = false;
+        WeaponGroups.SetActive(false);
     }
 }
