@@ -19,7 +19,7 @@ public class Fragment : MonoBehaviour
 
     public void Init()
     {
-        transform.parent = GameController.Controller.PatentFragment;
+        transform.parent = GameController.Controller.ControllerLevel.PatentFragment;
         _childCollider.enabled = true;
         _childRigidbody.useGravity = true;
         _childRigidbody.isKinematic = false;

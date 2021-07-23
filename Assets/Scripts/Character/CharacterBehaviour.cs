@@ -31,14 +31,16 @@ public class CharacterBehaviour : MonoBehaviour
 
     private float _currentHealth;
 
+    public bool IsDeath => _isDeath;
     private bool _isDeath;
 
+    private StatusBar Bar;
     private void Start()
     {
-        Init();
+       // Init();
     }
 
-    protected virtual void Init()
+    public virtual void Init()
     {
         for (int i = 0; i < WeaponsList.Length; i++)
         {
@@ -54,6 +56,9 @@ public class CharacterBehaviour : MonoBehaviour
 
         CharacterGameObject = gameObject;
         _isDeath = false;
+
+        Bar = Instantiate(GameController.Controller.Config.StatusBarCharacter, GameController.Controller.ControllerUI.ContainerCharacterStatusBar);
+        Bar.Init(transform, _currentHealth);
     }
 
     protected virtual void Move(Vector3 direction)
@@ -159,6 +164,8 @@ public class CharacterBehaviour : MonoBehaviour
         _currentHealth = GameController.Controller.Config.LevelHealth[_currentLvlIndex];
         LevelSkin[_currentLvlIndex].SetActive(true);
 
+        Bar.SetTextHealth(_currentHealth);
+
         StopAllCoroutines();
         StartCoroutine(SetSize(Vector3.one * GameController.Controller.Config.LevelSize[_currentLvlIndex]));
     }
@@ -202,17 +209,21 @@ public class CharacterBehaviour : MonoBehaviour
     public void SetDamage(float dmg)
     {
         _currentHealth -= dmg;
-
-        if(_currentHealth <= 0 && _isDeath == false)
+        Bar.SetTextHealth(_currentHealth);
+        if (_currentHealth <= 0 && _isDeath == false)
         {
-            _isDeath = true;
             DestroyCgaracter();
         }
     }
 
-    private void DestroyCgaracter()
+    public void DestroyCgaracter()
     {
-        for(int i = 0; i <= _currentLvlIndex; i++)
+       // GameController.Controller.ControllerLevel.RemoveCharacter(this);
+
+        _isDeath = true;
+        Bar.DestroyStatusBar();
+
+        for (int i = 0; i <= _currentLvlIndex; i++)
             if(i< FragmentGroups.Count)
                 foreach (Fragment fg in FragmentGroups[i].Fragments)
                     fg.Init();

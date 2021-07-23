@@ -25,15 +25,18 @@ public class StatusBar : MonoBehaviour
     {
         TextHealth.text = health.ToString();
     }
-
+    
     void Update()
     {
         var screenPos = GameController.Controller.ControllerUI.MainCamera.WorldToScreenPoint(_targetChatacter.position);
         StatusBarTransform.position = new Vector2(Mathf.Clamp(screenPos.x, OffsetLeft, OffsetRight), Mathf.Clamp(screenPos.y, OffsetBottom, OffsetTop));
+
+        Debug.Log($"char - {_targetChatacter.name} - {_targetChatacter.position} - {screenPos} - {StatusBarTransform.position}");
     }
 
     public void DestroyStatusBar()
     {
+        gameObject.SetActive(false);
         Destroy(gameObject);
     }
 }

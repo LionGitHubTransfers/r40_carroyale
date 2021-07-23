@@ -7,13 +7,8 @@ public class GameController : MonoBehaviour
     public static GameController Controller;
 
     public UiController ControllerUI;
+    public LevelController ControllerLevel;
     public Config Config;
-
-    public Transform ParentItems;
-    public Transform PatentFragment;
-
-   // public Item SpawnItemArmor;
-    //public List<Item> ListSpawnItemsWeapon;
 
     public Transform PatentItemsl { get; internal set; }
 
@@ -30,6 +25,10 @@ public class GameController : MonoBehaviour
 
         Destroy(this);
     }
+    private void Start()
+    {
+        ControllerLevel.LoadLevel(0);
+    }
 
     public Item GetItem()
     {
@@ -43,5 +42,11 @@ public class GameController : MonoBehaviour
             _countSpawnWeapon++;
             return Config.ListSpawnItemsWeapon[Random.Range(0, Config.ListSpawnItemsWeapon.Count)];
         }
+    }
+
+    public void LoadLevel()
+    {
+        ControllerLevel.ClearMap();
+        ControllerLevel.LoadLevel(0);
     }
 }

@@ -11,7 +11,7 @@ public class Enemy : CharacterBehaviour
     private Vector3 _targetPos;
     private float _time;
 
-    protected override void Init()
+    public override void Init()
     {
         var pos = Random.insideUnitCircle * RadiusRing;
         _targetPos.x = pos.x;

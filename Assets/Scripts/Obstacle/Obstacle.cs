@@ -50,7 +50,7 @@ public class Obstacle : MonoBehaviour
         var pos = PointSpawnItem.position;
         pos.y = 0;
 
-        var item = Instantiate(GameController.Controller.GetItem(), pos, Quaternion.identity, GameController.Controller.ParentItems);
+        var item = Instantiate(GameController.Controller.GetItem(), pos, Quaternion.identity, GameController.Controller.ControllerLevel.ParentItems);
         item.Init();
         Destroy(gameObject);
     }

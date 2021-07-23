@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa120f48d1d58d64da69228ef9ae46d9, type: 3}
   m_Name: Config
   m_EditorClassIdentifier: 
+  LevelMaps:
+  - {fileID: 6351558598937758432, guid: 70da7106fdf8a334fa7708419a16d1cf, type: 3}
   LevelDamage:
   - 10
   - 20
@@ -43,6 +45,6 @@ MonoBehaviour:
   - {fileID: 2799182791097638178, guid: 2f7a45c191a925b4f98e110f31ff0e8a, type: 3}
   - {fileID: 6112930958499116947, guid: 08764f771c7a3aa40a984b88037f9441, type: 3}
   - {fileID: 7867429019765649407, guid: 49ce7193c52d99e4182ac30ebfc72653, type: 3}
-  PrefabPlauer: {fileID: 4256278088614296358, guid: 0b61d7a813a42674097bee1ce52ef44a, type: 3}
+  PrefabPlayer: {fileID: 4256278088614296358, guid: 0b61d7a813a42674097bee1ce52ef44a, type: 3}
   PrefabEnemy: {fileID: 5039766289456248751, guid: 8b9fd56d7e29de541a87ed78be1da089, type: 3}
   StatusBarCharacter: {fileID: 8037382222824966382, guid: ff798ad89e5d3ce4485ed98904c2eb8a, type: 3}

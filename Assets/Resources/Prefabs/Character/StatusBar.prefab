@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StatusBarTransform: {fileID: 8037382222824966378}
-  TextHealth: {fileID: 0}
+  TextHealth: {fileID: 8037382221889996024}
 --- !u!222 &8037382222824966383
 CanvasRenderer:
   m_ObjectHideFlags: 0
