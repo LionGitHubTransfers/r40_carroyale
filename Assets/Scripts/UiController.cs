@@ -14,6 +14,11 @@ public class UiController : MonoBehaviour
     public Transform OffsetTop;
     public Transform OffsetBottom;
 
+    public void Init()
+    {
+        
+    }
+
 
     // Start is called before the first frame update
     void Start()

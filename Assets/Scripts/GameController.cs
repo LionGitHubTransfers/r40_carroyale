@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
     }
     private void Start()
     {
+        ControllerUI.Init();
         ControllerLevel.LoadLevel(0);
     }
 

@@ -8,12 +8,12 @@ public class StatusBar : MonoBehaviour
     public Transform StatusBarTransform;
     public TMP_Text TextHealth;
 
-    private Transform _targetChatacter;
-
     private float OffsetLeft => GameController.Controller.ControllerUI.OffsetLeft.position.x;
     private float OffsetRight => GameController.Controller.ControllerUI.OffsetRight.position.x;
     private float OffsetTop => GameController.Controller.ControllerUI.OffsetTop.position.y;
     private float OffsetBottom => GameController.Controller.ControllerUI.OffsetBottom.position.y;
+
+    private Transform _targetChatacter;
 
     public void Init(Transform targetChatacter, float health)
     {
@@ -29,9 +29,14 @@ public class StatusBar : MonoBehaviour
     void Update()
     {
         var screenPos = GameController.Controller.ControllerUI.MainCamera.WorldToScreenPoint(_targetChatacter.position);
-        StatusBarTransform.position = new Vector2(Mathf.Clamp(screenPos.x, OffsetLeft, OffsetRight), Mathf.Clamp(screenPos.y, OffsetBottom, OffsetTop));
 
-        Debug.Log($"char - {_targetChatacter.name} - {_targetChatacter.position} - {screenPos} - {StatusBarTransform.position}");
+        if (screenPos.z < 0)
+            screenPos *= -1;
+        else if(screenPos.z < 0)
+            if(screenPos.y > 0)
+                screenPos *= -1;
+
+        StatusBarTransform.position = new Vector2(Mathf.Clamp(screenPos.x, OffsetLeft, OffsetRight), Mathf.Clamp(screenPos.y, OffsetBottom, OffsetTop));
     }
 
     public void DestroyStatusBar()
