@@ -8,6 +8,8 @@ public class UiController : MonoBehaviour
     public Camera MainCamera;
     public Transform ContainerCharacterStatusBar;
 
+    public GameObject TapToStart;
+
     [Header("Offsets")]
     public Transform OffsetLeft;
     public Transform OffsetRight;
@@ -19,16 +21,19 @@ public class UiController : MonoBehaviour
         
     }
 
-
-    // Start is called before the first frame update
-    void Start()
+    public void LoadLevel()
     {
-        
+        TapToStart.SetActive(true);
+    }
+    
+    public void ShowTapToStart()
+    {
+        TapToStart.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnClickTapToStart()
     {
-        
+        TapToStart.SetActive(false);
+        GameController.Controller.ControllerLevel.StartRace();
     }
 }

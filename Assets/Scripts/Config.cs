@@ -19,4 +19,6 @@ public class Config : ScriptableObject
     public CharacterBehaviour PrefabEnemy;
 
     public StatusBar StatusBarCharacter;
+
+    public AnimationCurve RadiusRing;
 }

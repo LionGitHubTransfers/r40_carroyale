@@ -48,3 +48,27 @@ MonoBehaviour:
   PrefabPlayer: {fileID: 4256278088614296358, guid: 0b61d7a813a42674097bee1ce52ef44a, type: 3}
   PrefabEnemy: {fileID: 5039766289456248751, guid: 8b9fd56d7e29de541a87ed78be1da089, type: 3}
   StatusBarCharacter: {fileID: 8037382222824966382, guid: ff798ad89e5d3ce4485ed98904c2eb8a, type: 3}
+  RadiusRing:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 300
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 300
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

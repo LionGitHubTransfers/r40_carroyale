@@ -6,44 +6,38 @@ public class Enemy : CharacterBehaviour
 {
     public CharacterController character;
 
-    public float RadiusRing = 30;
+    //public float RadiusRing = 30;
 
     private Vector3 _targetPos;
     private float _time;
 
     public override void Init()
     {
-        var pos = Random.insideUnitCircle * RadiusRing;
-        _targetPos.x = pos.x;
-        _targetPos.z = pos.y;
+        NextTargetPosition();
 
-        Debug.Log(_targetPos);
         base.Init();
     }
 
-    void Update()
+    public override void UpdateCharacter()
     {
-
-
-        //Vector3 target = waypoint[currentWaypoint].position;
-        //target.y = transform.position.y; // keep waypoint at character's height
-        Vector3 moveDirection = _targetPos - transform.position;
-        moveDirection.y = Constants.GRAVITY;
-        if (moveDirection.magnitude < 1 || _time >= 3)
+        _direction = _targetPos - transform.position;
+        if (_direction.magnitude < 1 || _time >= 3)
         {
             _time = 0;
-           //transform.position = _targetPos; // force character to waypoint position
 
-            var pos = Random.insideUnitCircle * RadiusRing;
-            _targetPos.x = pos.x;
-            _targetPos.z = pos.y;
-        }
-        else
-        {
-            transform.LookAt(_targetPos);
-            character.Move(moveDirection.normalized * _currentSpeed * Time.deltaTime);
+            NextTargetPosition();
         }
 
+        _direction = _direction.normalized;
         _time += Time.deltaTime;
+
+        base.UpdateCharacter();
+    }
+
+    private void NextTargetPosition()
+    {
+        var pos = Random.insideUnitCircle * RadiusRing;
+        _targetPos.x = pos.x;
+        _targetPos.z = pos.y;
     }
 }

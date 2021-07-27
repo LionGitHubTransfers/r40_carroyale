@@ -80,6 +80,14 @@ public class Map : MonoBehaviour
         }
     }
 
+    public void StartRace()
+    {
+        foreach (CharacterBehaviour c in _characters)
+        {
+            c.StartRace();
+        }
+    }
+
     public void RemoveCharacter(CharacterBehaviour c)
     {
         if (_characters.Exists(x => x == c))
@@ -90,7 +98,7 @@ public class Map : MonoBehaviour
     {
         foreach(CharacterBehaviour c in _characters)
         {
-            if(!c.IsDeath)
+            if(c.IsLife)
                 c.DestroyCgaracter();
         }
 

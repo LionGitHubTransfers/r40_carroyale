@@ -20,21 +20,25 @@ public class CharacterBehaviour : MonoBehaviour
 
     public List<FragmentGroup> FragmentGroups;
 
-    private GameObject CharacterGameObject;
+    private GameObject _characterGameObject;
+    private Transform _characterTransform;
 
     protected Weapon _currentWeapon;
     protected int _currentLvlIndex = 0;
     protected float _currentSpeed = 10f;
     protected float _currentDamage => GameController.Controller.Config.LevelDamage[_currentLvlIndex] + _currentWeapon.Damage;
+    protected float RadiusRing => GameController.Controller.ControllerLevel.RadiusRing;
 
-    protected Vector3 direction;
+    protected Vector3 _direction;
 
     private float _currentHealth;
 
-    public bool IsDeath => _isDeath;
-    private bool _isDeath;
+    public bool IsLife => _isLife;
+    private bool _isLife;
 
     private StatusBar Bar;
+
+
     private void Start()
     {
        // Init();
@@ -54,11 +58,44 @@ public class CharacterBehaviour : MonoBehaviour
         _currentSpeed = GameController.Controller.Config.LevelSpeed[_currentLvlIndex];
         _currentHealth = GameController.Controller.Config.LevelHealth[_currentLvlIndex];
 
-        CharacterGameObject = gameObject;
-        _isDeath = false;
+        _characterGameObject = gameObject;
+        _characterTransform = transform;
+        _isLife = true;
 
         Bar = Instantiate(GameController.Controller.Config.StatusBarCharacter, GameController.Controller.ControllerUI.ContainerCharacterStatusBar);
         Bar.Init(transform, _currentHealth);
+
+        _isLife = false;
+    }
+
+    public void StartRace()
+    {
+        _isLife = true;
+    }
+
+    private void Update()
+    {
+        if (_isLife)
+        {
+            UpdateCharacter();
+            CheckInRing();
+        }
+    }
+
+    public virtual void UpdateCharacter()
+    {
+        Move(_direction);
+    }
+
+    public void CheckInRing()
+    {
+
+        float a = Mathf.Pow(_characterTransform.position.x, 2) + Mathf.Pow(_characterTransform.position.z, 2);
+        float b = Mathf.Pow(RadiusRing, 2);
+       // if (Mathf.Pow(_characterTransform.position.x, 2) + Mathf.Pow(_characterTransform.position.z, 2) >= Mathf.Pow(RadiusRing,2))
+        if (Mathf.Pow(_characterTransform.position.x, 2) + Mathf.Pow(_characterTransform.position.z, 2) >= Mathf.Pow(RadiusRing,2))
+            SetDamage(Constants.DAMAGE_RING * Time.deltaTime);
+        //(x - center_x) ^ 2 + (y - center_y) ^ 2 < radius ^ 2
     }
 
     protected virtual void Move(Vector3 direction)
@@ -105,7 +142,7 @@ public class CharacterBehaviour : MonoBehaviour
 
         if (other.tag == Constants.TAG_CHARACTER)
         {
-            if(other.gameObject != CharacterGameObject)
+            if(other.gameObject != _characterGameObject)
             {
                 var character = other.GetComponent<CharacterBehaviour>();
                 character.SetDamage(_currentDamage);
@@ -134,7 +171,7 @@ public class CharacterBehaviour : MonoBehaviour
 
         if (other.tag == Constants.TAG_CHARACTER)
         {
-            if (other.gameObject != CharacterGameObject)
+            if (other.gameObject != _characterGameObject)
             {
                 var character = other.GetComponent<CharacterBehaviour>();
                 character.SetDamage(_currentDamage);
@@ -210,7 +247,7 @@ public class CharacterBehaviour : MonoBehaviour
     {
         _currentHealth -= dmg;
         Bar.SetTextHealth(_currentHealth);
-        if (_currentHealth <= 0 && _isDeath == false)
+        if (_currentHealth <= 0 && _isLife)
         {
             DestroyCgaracter();
         }
@@ -218,9 +255,7 @@ public class CharacterBehaviour : MonoBehaviour
 
     public void DestroyCgaracter()
     {
-       // GameController.Controller.ControllerLevel.RemoveCharacter(this);
-
-        _isDeath = true;
+        _isLife = false;
         Bar.DestroyStatusBar();
 
         for (int i = 0; i <= _currentLvlIndex; i++)

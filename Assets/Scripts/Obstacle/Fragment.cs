@@ -13,10 +13,6 @@ public class Fragment : MonoBehaviour
         _childRigidbody = GetComponent<Rigidbody>();
     }
 
-    private void Start()
-    {
-    }
-
     public void Init()
     {
         transform.parent = GameController.Controller.ControllerLevel.PatentFragment;
@@ -24,7 +20,7 @@ public class Fragment : MonoBehaviour
         _childRigidbody.useGravity = true;
         _childRigidbody.isKinematic = false;
 
-        Invoke("DestroyFragment", 1f);
+        Invoke("DestroyFragment", Constants.TIME_LIFE_FRAGMENT);
     }
 
     public void DestroyFragment()
