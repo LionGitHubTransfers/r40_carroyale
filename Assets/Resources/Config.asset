@@ -21,11 +21,11 @@ MonoBehaviour:
   - 0
   - 0
   LevelSpeed:
-  - 10
-  - 10
-  - 10
-  - 10
-  - 10
+  - 20
+  - 20
+  - 20
+  - 20
+  - 20
   LevelSize:
   - 0.6
   - 0.7
@@ -180,7 +180,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   GravitySimple: -1
   Gravity: -8
-  TimeLifeFragment: 2
+  TimeLifeFragment: 3
   DelayRing: 5
   SpeedRing: 3
   DamageRing: 5
+  SpeedRotationWheel: -400
+  VelocityFragments: 10

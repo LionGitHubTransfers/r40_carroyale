@@ -8,6 +8,12 @@ public class CharacterBehaviour : MonoBehaviour
     public Transform TransformRotate;
     public CharacterController CharController;
     public GameObject WeaponGroups;
+    public Transform PointStatusBar;
+
+    public Transform RightWheel_1;
+    public Transform RightWheel_2;
+    public Transform LeftWheel_1;
+    public Transform LeftWheel_2;
 
     public List<GameObject> LevelSkin;
     public Weapon[] WeaponsList;
@@ -67,7 +73,7 @@ public class CharacterBehaviour : MonoBehaviour
         _isLife = true;
 
         Bar = Instantiate(GameController.Controller.Config.StatusBarCharacter, GameController.Controller.ControllerUI.ContainerCharacterStatusBar);
-        Bar.Init(transform, name, _currentHealth);
+        Bar.Init(PointStatusBar, name, _currentHealth);
         NameCharacter = name;
         _isLife = false;
     }
@@ -107,6 +113,11 @@ public class CharacterBehaviour : MonoBehaviour
         if (direction != Vector3.zero)
         {
             TransformRotate.LookAt(TransformRotate.position + direction, Vector3.up);
+
+            RightWheel_1.Rotate(0, 0, GameController.Controller.Config.SpeedRotationWheel * Time.deltaTime);
+            RightWheel_2.Rotate(0, 0, GameController.Controller.Config.SpeedRotationWheel * Time.deltaTime);
+            LeftWheel_1.Rotate(0, 0, GameController.Controller.Config.SpeedRotationWheel * Time.deltaTime);
+            LeftWheel_2.Rotate(0, 0, GameController.Controller.Config.SpeedRotationWheel * Time.deltaTime);
         }
 
         if (CharController.isGrounded)
@@ -114,7 +125,7 @@ public class CharacterBehaviour : MonoBehaviour
         else
             direction.y = GameController.Controller.Config.Gravity;
 
-        CharController.Move(direction * _currentSpeed * Time.fixedDeltaTime);
+        CharController.Move(direction * _currentSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -178,7 +189,7 @@ public class CharacterBehaviour : MonoBehaviour
             if (other.gameObject != _characterGameObject)
             {
                 var character = other.GetComponent<CharacterBehaviour>();
-                character.SetDamage(_currentDamage);
+                character.SetDamage(_currentDamage * Time.deltaTime);
             }
         }
     }

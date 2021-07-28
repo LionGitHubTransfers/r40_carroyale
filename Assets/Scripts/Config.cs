@@ -36,4 +36,7 @@ public class Config : ScriptableObject
     public float DelayRing = 5f;
     public float SpeedRing = 3f;
     public float DamageRing = 5f;
+    public float SpeedRotationWheel = -10f;
+
+    public float VelocityFragments = 10f;
 }
