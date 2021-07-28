@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 5805718495123054702}
   - component: {fileID: 7080342835538880595}
   m_Layer: 0
-  m_Name: ItemWeapon 1 flap
+  m_Name: ItemWeapon id1 tir3 flap
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -176,6 +176,7 @@ MonoBehaviour:
   ItemTransform: {fileID: 1727594154809731635}
   ItemCollider: {fileID: 3392165375664938541}
   IdWeapont: 1
+  WeaponDamage: 15
 --- !u!95 &7080342835538880595
 Animator:
   serializedVersion: 3

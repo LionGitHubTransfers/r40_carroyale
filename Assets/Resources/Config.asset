@@ -15,17 +15,17 @@ MonoBehaviour:
   LevelMaps:
   - {fileID: 6351558598937758432, guid: 70da7106fdf8a334fa7708419a16d1cf, type: 3}
   LevelDamage:
-  - 10
-  - 20
-  - 30
-  - 40
-  - 50
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   LevelSpeed:
   - 10
-  - 20
-  - 30
-  - 40
-  - 50
+  - 10
+  - 10
+  - 10
+  - 10
   LevelSize:
   - 0.6
   - 0.7
@@ -38,13 +38,32 @@ MonoBehaviour:
   - 20
   - 25
   - 30
+  ListNames:
+  - Spikey
+  - Truck_Crush
+  - DEMOlition
+  - Duck_with_Gun
+  - 7ex_7uthor
+  - '!Maza_Faza!'
+  - better_than_you
+  - cowabanga_dude
+  - Error404
+  - haluna_matata
+  - i_killed_covid
+  - SniperPrincess
+  - Yellow_Snowman
+  - PsuchGirl
   SpawnItemArmor: {fileID: 8983464445581482948, guid: baeae2df65ec8294797d914f2cb21442, type: 3}
+  DefaultWeaponDamage: 5
   ListSpawnItemsWeapon:
   - {fileID: 5805718495123054702, guid: 925cdc2138e5a30458e1fc9b949edea7, type: 3}
   - {fileID: 508317539407149372, guid: 7d169713a03304d49adae4604627db5f, type: 3}
   - {fileID: 2799182791097638178, guid: 2f7a45c191a925b4f98e110f31ff0e8a, type: 3}
   - {fileID: 6112930958499116947, guid: 08764f771c7a3aa40a984b88037f9441, type: 3}
   - {fileID: 7867429019765649407, guid: 49ce7193c52d99e4182ac30ebfc72653, type: 3}
+  ListSpawnItemsWeaponTir1: []
+  ListSpawnItemsWeaponTir2: []
+  ListSpawnItemsWeaponTir3: []
   PrefabPlayer: {fileID: 4256278088614296358, guid: 0b61d7a813a42674097bee1ce52ef44a, type: 3}
   PrefabEnemy: {fileID: 5039766289456248751, guid: 8b9fd56d7e29de541a87ed78be1da089, type: 3}
   StatusBarCharacter: {fileID: 8037382222824966382, guid: ff798ad89e5d3ce4485ed98904c2eb8a, type: 3}
@@ -72,3 +91,96 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  CountEnemies:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 2
+      value: 1
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 3
+      value: 2
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 4
+      value: 3
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 5
+      value: 4
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 6
+      value: 5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 8
+      value: 5
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 9
+      value: 6
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  GravitySimple: -1
+  Gravity: -8
+  TimeLifeFragment: 2
+  DelayRing: 5
+  SpeedRing: 3
+  DamageRing: 5

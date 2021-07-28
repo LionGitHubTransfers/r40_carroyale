@@ -47,12 +47,56 @@ public class Map : MonoBehaviour
                 cells.Obstacles[i].position = randomPosition[i];
         }
 
-        int[] randomIndex = new int[ListSpawnPoints.Count];
+        //int[] randomIndex = new int[ListSpawnPoints.Count];
 
-        for (int i = 0; i < ListSpawnPoints.Count; i++)
+        //for (int i = 0; i < ListSpawnPoints.Count; i++)
+        //    randomIndex[i] = i;
+
+        //int nn = ListSpawnPoints.Count;
+
+        //while (nn > 1)
+        //{
+        //    nn--;
+        //    int k = UnityEngine.Random.Range(0, nn + 1);
+        //    var value = randomIndex[k];
+        //    randomIndex[k] = randomIndex[nn];
+        //    randomIndex[nn] = value;
+        //}
+        int tempCountCharacher = 2 + 1;
+
+        int[] randomIndex = GetRandomIndex(ListSpawnPoints.Count);
+        int[] randomIndexNames = GetRandomIndex(GameController.Controller.Config.ListNames.Count);
+
+        _characters = new List<CharacterBehaviour>();
+
+        for (int i=0; i < tempCountCharacher; i++)
+        {
+            CharacterBehaviour character;
+            string name;
+            if (i == 0)
+            {
+                name = Constants.TAG_PLAYER;
+                character = Instantiate(GameController.Controller.Config.PrefabPlayer, ListSpawnPoints[randomIndex[i]].position, Quaternion.identity, PatentCharacters);
+            }
+            else
+            {
+                name = GameController.Controller.Config.ListNames[randomIndexNames[i]];
+                character = Instantiate(GameController.Controller.Config.PrefabEnemy, ListSpawnPoints[randomIndex[i]].position, Quaternion.identity, PatentCharacters);
+            }
+
+            character.Init(name);
+            _characters.Add(character);
+        }
+    }
+
+    private int[] GetRandomIndex(int count)
+    {
+        int[] randomIndex = new int[count];
+
+        for (int i = 0; i < count; i++)
             randomIndex[i] = i;
 
-        int nn = ListSpawnPoints.Count;
+        int nn = count;
 
         while (nn > 1)
         {
@@ -62,22 +106,7 @@ public class Map : MonoBehaviour
             randomIndex[k] = randomIndex[nn];
             randomIndex[nn] = value;
         }
-
-        int tempCountCharacher = 3;
-
-        _characters = new List<CharacterBehaviour>();
-
-        for (int i=0; i < tempCountCharacher; i++)
-        {
-            CharacterBehaviour character;
-            if (i == 0)
-                character = Instantiate(GameController.Controller.Config.PrefabPlayer, ListSpawnPoints[randomIndex[i]].position, Quaternion.identity, PatentCharacters);
-            else
-                character = Instantiate(GameController.Controller.Config.PrefabEnemy, ListSpawnPoints[randomIndex[i]].position, Quaternion.identity, PatentCharacters);
-
-            character.Init();
-            _characters.Add(character);
-        }
+        return randomIndex;
     }
 
     public void StartRace()
@@ -103,5 +132,10 @@ public class Map : MonoBehaviour
         }
 
         Destroy(gameObject);
+    }
+
+    public void Loos()
+    {
+
     }
 }

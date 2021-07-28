@@ -89,7 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponGO: {fileID: 281376668290068271}
-  Damage: 1
   IdWeapont: 2
   IsCumulativeDamage: 0
 --- !u!33 &5086056051132565415
@@ -324,7 +323,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponGO: {fileID: 1596282486552070164}
-  Damage: 1
   IdWeapont: 1
   IsCumulativeDamage: 0
 --- !u!33 &5717410469809659959
@@ -1116,7 +1114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponGO: {fileID: 4256278088572710663}
-  Damage: 1
   IdWeapont: 0
   IsCumulativeDamage: 0
 --- !u!65 &4256278088572710661
@@ -1222,28 +1219,6 @@ MonoBehaviour:
     - {fileID: 1469094024532029174}
     - {fileID: 8098940040716312513}
     - {fileID: 1608237403474870663}
-  Fragments:
-  - {fileID: 6499315126123171656}
-  - {fileID: 2292529500888954150}
-  - {fileID: 165014620101341090}
-  - {fileID: 3437207191712601775}
-  - {fileID: 185885852250478141}
-  - {fileID: 1469094024532029174}
-  - {fileID: 8098940040716312513}
-  - {fileID: 1608237403474870663}
-  - {fileID: 1520319319228083304}
-  - {fileID: 4418243743524830866}
-  - {fileID: 4663209792057383755}
-  - {fileID: 6617402944344067628}
-  - {fileID: 2444190543174286188}
-  - {fileID: 1693750668305474672}
-  - {fileID: 3992755731781340532}
-  - {fileID: 7488606812615575185}
-  - {fileID: 4603374542102155940}
-  - {fileID: 2233376942078500926}
-  - {fileID: 6821663482206328264}
-  - {fileID: 3521392214483110778}
-  - {fileID: 6840791782335059489}
 --- !u!143 &4256278088614296356
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1257,7 +1232,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 1
   m_Radius: 5
-  m_SlopeLimit: 45
+  m_SlopeLimit: 10
   m_StepOffset: 0.01
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
@@ -1712,7 +1687,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponGO: {fileID: 6342823055632703545}
-  Damage: 1
   IdWeapont: 4
   IsCumulativeDamage: 1
 --- !u!33 &7219308341884024020
@@ -2046,7 +2020,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponGO: {fileID: 7122339793734432893}
-  Damage: 1
   IdWeapont: 5
   IsCumulativeDamage: 1
 --- !u!33 &3175655308202178516
@@ -2159,7 +2132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WeaponGO: {fileID: 7482542309375090268}
-  Damage: 1
   IdWeapont: 3
   IsCumulativeDamage: 0
 --- !u!33 &8704689515819786903

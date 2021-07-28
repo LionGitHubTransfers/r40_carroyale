@@ -28,7 +28,8 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         ControllerUI.Init();
-        ControllerLevel.LoadLevel(0);
+        LoadLevel(0);
+       // ControllerLevel.LoadLevel(0);
     }
 
     public Item GetItem()
@@ -45,9 +46,29 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public void LoadLevel()
+    public void LoadLevel(int indexLevel)
     {
         ControllerLevel.ClearMap();
-        ControllerLevel.LoadLevel(0);
+        ControllerLevel.LoadLevel(indexLevel);
+    }
+
+    public void Restart()
+    {
+        LoadLevel(0);
+    }
+
+    public void Continue()
+    {
+        LoadLevel(0);
+    }
+
+    public void Loos()
+    {
+        ControllerUI.ShowContainerLoos();
+    }
+
+    public void Finish(List<string> liders)
+    {
+        ControllerUI.LevelCompleted(liders);
     }
 }

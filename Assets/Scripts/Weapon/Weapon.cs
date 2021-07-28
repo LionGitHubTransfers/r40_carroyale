@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public GameObject WeaponGO;
-    public float Damage = 1;
+   // public float Damage = 1;
     public int IdWeapont;
 
     public bool IsCumulativeDamage = false;

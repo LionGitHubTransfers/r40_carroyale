@@ -9,7 +9,16 @@ public class Player : CharacterBehaviour
 
     public override void UpdateCharacter()
     {
-        _direction = Vector3.forward * _joystickControl.Vertical + Vector3.right * _joystickControl.Horizontal;
+        if (GameController.Controller.ControllerLevel.IsRaceProgress)
+            _direction = Vector3.forward * _joystickControl.Vertical + Vector3.right * _joystickControl.Horizontal;
+        else
+            _direction = Vector3.zero;
+
         base.UpdateCharacter();
+    }
+
+    public override void DestroyCgaracter()
+    {
+        base.DestroyCgaracter();
     }
 }

@@ -20,7 +20,7 @@ public class Fragment : MonoBehaviour
         _childRigidbody.useGravity = true;
         _childRigidbody.isKinematic = false;
 
-        Invoke("DestroyFragment", Constants.TIME_LIFE_FRAGMENT);
+        Invoke("DestroyFragment", GameController.Controller.Config.TimeLifeFragment);
     }
 
     public void DestroyFragment()

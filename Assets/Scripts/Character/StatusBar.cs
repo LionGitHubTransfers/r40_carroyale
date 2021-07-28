@@ -6,6 +6,7 @@ using TMPro;
 public class StatusBar : MonoBehaviour
 {
     public Transform StatusBarTransform;
+    public TMP_Text TextName;
     public TMP_Text TextHealth;
 
     private float OffsetLeft => GameController.Controller.ControllerUI.OffsetLeft.position.x;
@@ -15,15 +16,16 @@ public class StatusBar : MonoBehaviour
 
     private Transform _targetChatacter;
 
-    public void Init(Transform targetChatacter, float health)
+    public void Init(Transform targetChatacter, string name, float health)
     {
         _targetChatacter = targetChatacter;
+        TextName.text = name;
         SetTextHealth(health);
     }
 
     public void SetTextHealth(float health)
     {
-        TextHealth.text = health.ToString();
+        TextHealth.text = health.ToString("F");
     }
     
     void Update()
@@ -37,6 +39,11 @@ public class StatusBar : MonoBehaviour
                 screenPos *= -1;
 
         StatusBarTransform.position = new Vector2(Mathf.Clamp(screenPos.x, OffsetLeft, OffsetRight), Mathf.Clamp(screenPos.y, OffsetBottom, OffsetTop));
+    }
+
+    public string GetName()
+    {
+        return TextName.text;
     }
 
     public void DestroyStatusBar()

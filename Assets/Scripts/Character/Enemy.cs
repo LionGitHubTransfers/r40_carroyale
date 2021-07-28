@@ -11,11 +11,11 @@ public class Enemy : CharacterBehaviour
     private Vector3 _targetPos;
     private float _time;
 
-    public override void Init()
+    public override void Init(string name)
     {
         NextTargetPosition();
 
-        base.Init();
+        base.Init(name);
     }
 
     public override void UpdateCharacter()

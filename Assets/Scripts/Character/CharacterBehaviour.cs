@@ -26,7 +26,8 @@ public class CharacterBehaviour : MonoBehaviour
     protected Weapon _currentWeapon;
     protected int _currentLvlIndex = 0;
     protected float _currentSpeed = 10f;
-    protected float _currentDamage => GameController.Controller.Config.LevelDamage[_currentLvlIndex] + _currentWeapon.Damage;
+    protected float _currentDamage => GameController.Controller.Config.LevelDamage[_currentLvlIndex] + _currentWeaponDamage;// _currentWeapon.Damage;
+    protected float _currentWeaponDamage = 0;
     protected float RadiusRing => GameController.Controller.ControllerLevel.RadiusRing;
 
     protected Vector3 _direction;
@@ -37,14 +38,16 @@ public class CharacterBehaviour : MonoBehaviour
     private bool _isLife;
 
     private StatusBar Bar;
+    public string NameCharacter { get; private set; }
 
 
     private void Start()
     {
-       // Init();
+        // Init();
+       //CharController.attachedRigidbody.constraints = RigidbodyConstraints.FreezePositionY;
     }
 
-    public virtual void Init()
+    public virtual void Init(string name)
     {
         for (int i = 0; i < WeaponsList.Length; i++)
         {
@@ -53,6 +56,7 @@ public class CharacterBehaviour : MonoBehaviour
         }
 
         _currentWeapon = WeaponsList[0];
+        _currentWeaponDamage = GameController.Controller.Config.DefaultWeaponDamage;
         CharController.transform.localScale = Vector3.one * GameController.Controller.Config.LevelSize[_currentLvlIndex];
         _currentWeapon.SetActive(true);
         _currentSpeed = GameController.Controller.Config.LevelSpeed[_currentLvlIndex];
@@ -63,8 +67,8 @@ public class CharacterBehaviour : MonoBehaviour
         _isLife = true;
 
         Bar = Instantiate(GameController.Controller.Config.StatusBarCharacter, GameController.Controller.ControllerUI.ContainerCharacterStatusBar);
-        Bar.Init(transform, _currentHealth);
-
+        Bar.Init(transform, name, _currentHealth);
+        NameCharacter = name;
         _isLife = false;
     }
 
@@ -94,7 +98,7 @@ public class CharacterBehaviour : MonoBehaviour
         float b = Mathf.Pow(RadiusRing, 2);
        // if (Mathf.Pow(_characterTransform.position.x, 2) + Mathf.Pow(_characterTransform.position.z, 2) >= Mathf.Pow(RadiusRing,2))
         if (Mathf.Pow(_characterTransform.position.x, 2) + Mathf.Pow(_characterTransform.position.z, 2) >= Mathf.Pow(RadiusRing,2))
-            SetDamage(Constants.DAMAGE_RING * Time.deltaTime);
+            SetDamage(GameController.Controller.Config.DamageRing * Time.deltaTime);
         //(x - center_x) ^ 2 + (y - center_y) ^ 2 < radius ^ 2
     }
 
@@ -106,9 +110,9 @@ public class CharacterBehaviour : MonoBehaviour
         }
 
         if (CharController.isGrounded)
-            direction.y = Constants.GRAVITY_SIMPLE;
+            direction.y = GameController.Controller.Config.GravitySimple;
         else
-            direction.y = Constants.GRAVITY;
+            direction.y = GameController.Controller.Config.Gravity;
 
         CharController.Move(direction * _currentSpeed * Time.fixedDeltaTime);
     }
@@ -136,7 +140,7 @@ public class CharacterBehaviour : MonoBehaviour
             if (item.IdWeapont == _currentWeapon.IdWeapont)
                 return;
 
-            if (PutItem(item.IdWeapont))
+            if (PutItem(item))
                 item.PickUp();
         }
 
@@ -165,7 +169,7 @@ public class CharacterBehaviour : MonoBehaviour
             if (item.IdWeapont == _currentWeapon.IdWeapont)
                 return;
 
-            if (PutItem(item.IdWeapont))
+            if (PutItem(item))
                 item.PickUp();
         }
 
@@ -179,9 +183,9 @@ public class CharacterBehaviour : MonoBehaviour
         }
     }
 
-    protected bool PutItem(int idItem)
+    protected bool PutItem(Item item)
     {
-        if (idItem == -1)
+        if (item.IdWeapont == -1)
         {
             if (_currentLvlIndex >= LevelSkin.Count - 1)
                 return false;
@@ -190,7 +194,7 @@ public class CharacterBehaviour : MonoBehaviour
             return true;
         }
 
-        return SetWeapon(idItem);
+        return SetWeapon(item);
     }
 
     private void SetArmor()
@@ -207,10 +211,10 @@ public class CharacterBehaviour : MonoBehaviour
         StartCoroutine(SetSize(Vector3.one * GameController.Controller.Config.LevelSize[_currentLvlIndex]));
     }
 
-    private bool SetWeapon(int idItem)
+    private bool SetWeapon(Item item)
     {
         for (int i = 0; i < WeaponsList.Length; i++)
-            if (WeaponsList[i].IdWeapont == idItem)
+            if (WeaponsList[i].IdWeapont == item.IdWeapont)
             {
                 _currentWeapon.SetActive(false);
                 _currentWeapon = null;
@@ -218,6 +222,7 @@ public class CharacterBehaviour : MonoBehaviour
                 _currentWeapon = WeaponsList[i];
                 _currentWeapon.SetActive(true);
 
+                _currentWeaponDamage = item.WeaponDamage;
             }
 
         if (_currentWeapon == null)
@@ -249,11 +254,16 @@ public class CharacterBehaviour : MonoBehaviour
         Bar.SetTextHealth(_currentHealth);
         if (_currentHealth <= 0 && _isLife)
         {
+            if(NameCharacter == Constants.TAG_PLAYER)
+                GameController.Controller.Loos();
+            else
+                GameController.Controller.ControllerLevel.DeathCharacter(this);
+
             DestroyCgaracter();
         }
     }
 
-    public void DestroyCgaracter()
+    public virtual void DestroyCgaracter()
     {
         _isLife = false;
         Bar.DestroyStatusBar();
@@ -266,5 +276,6 @@ public class CharacterBehaviour : MonoBehaviour
         this.enabled = false;
         CharController.enabled = false;
         WeaponGroups.SetActive(false);
+
     }
 }

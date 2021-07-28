@@ -8,6 +8,7 @@ public class Item : MonoBehaviour
     public Collider ItemCollider;
 
     public int IdWeapont;
+    public float WeaponDamage;
 
     public void Init()
     {
