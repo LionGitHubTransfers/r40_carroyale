@@ -117,6 +117,14 @@ public class Map : MonoBehaviour
         }
     }
 
+    public void StopRace()
+    {
+        foreach (CharacterBehaviour c in _characters)
+        {
+            c.StopRace();
+        }
+    }
+
     public void RemoveCharacter(CharacterBehaviour c)
     {
         if (_characters.Exists(x => x == c))

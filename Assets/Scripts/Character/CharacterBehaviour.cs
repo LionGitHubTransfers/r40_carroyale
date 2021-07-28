@@ -83,6 +83,11 @@ public class CharacterBehaviour : MonoBehaviour
         _isLife = true;
     }
 
+    public void StopRace()
+    {
+        _isLife = false;
+    }
+
     private void Update()
     {
         if (_isLife)

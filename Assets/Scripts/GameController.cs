@@ -65,6 +65,7 @@ public class GameController : MonoBehaviour
     public void Loos()
     {
         ControllerUI.ShowContainerLoos();
+        ControllerLevel.Loos();
     }
 
     public void Finish(List<string> liders)

@@ -47,14 +47,18 @@ public class LevelController : MonoBehaviour
         StartCoroutine(MoveRing());
     }
 
+    public void StopRace()
+    {
+        _curentMap.StopRace();
+    }
+
     public void DeathCharacter(CharacterBehaviour c)
     {
         ListNameEnemies.Add(c.NameCharacter);
 
         if (ListNameEnemies.Count >= _countEnemes)
         {
-            IsRaceProgress = false;
-            GameController.Controller.Finish(ListNameEnemies);
+            Finish();
         }
     }
 
@@ -79,6 +83,15 @@ public class LevelController : MonoBehaviour
     public void Loos()
     {
         StopAllCoroutines();
+        StopRace();
         _curentMap.Loos();
+    }
+
+    public void Finish()
+    {
+        IsRaceProgress = false;
+        StopAllCoroutines();
+        StopRace();
+        GameController.Controller.Finish(ListNameEnemies);
     }
 }
