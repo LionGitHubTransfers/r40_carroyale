@@ -13,6 +13,7 @@ public class Obstacle : MonoBehaviour
 
     public float Armor = 0;
     public float HealthFragmentGroup = 10;
+    public float Health = 10;
     //public Item SpawnItem;
     public Transform PointSpawnItem;
 
@@ -21,6 +22,11 @@ public class Obstacle : MonoBehaviour
     private int _countHit = 0;
 
     private float _currentDamage = 0;
+
+    private void Start()
+    {
+        HealthFragmentGroup = Health / FragmentGroups.Count;
+    }
 
     public void SetDamage(float dmg)
     {

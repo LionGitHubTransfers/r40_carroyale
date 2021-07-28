@@ -2559,6 +2559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Armor: 0
   HealthFragmentGroup: 0
+  Health: 23
   PointSpawnItem: {fileID: 2072851870631851737}
   FragmentGroups:
   - Fragments:
