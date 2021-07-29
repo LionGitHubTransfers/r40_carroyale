@@ -39,6 +39,7 @@ public class CharacterBehaviour : MonoBehaviour
     protected Vector3 _direction;
 
     private float _currentHealth;
+    private float _maxHealth;
 
     public bool IsLife => _isLife;
     private bool _isLife;
@@ -66,14 +67,15 @@ public class CharacterBehaviour : MonoBehaviour
         CharController.transform.localScale = Vector3.one * GameController.Controller.Config.LevelSize[_currentLvlIndex];
         _currentWeapon.SetActive(true);
         _currentSpeed = GameController.Controller.Config.LevelSpeed[_currentLvlIndex];
-        _currentHealth = GameController.Controller.Config.LevelHealth[_currentLvlIndex];
+        _maxHealth = GameController.Controller.Config.LevelHealth[_currentLvlIndex];
+        _currentHealth = _maxHealth;
 
         _characterGameObject = gameObject;
         _characterTransform = transform;
         //_isLife = true;
 
         Bar = Instantiate(GameController.Controller.Config.StatusBarCharacter, GameController.Controller.ControllerUI.ContainerCharacterStatusBar);
-        Bar.Init(PointStatusBar, name, _currentHealth);
+        Bar.Init(PointStatusBar, name, _currentHealth, _maxHealth);
         NameCharacter = name;
         _isLife = false;
     }
@@ -219,10 +221,12 @@ public class CharacterBehaviour : MonoBehaviour
         _currentLvlIndex++;
 
         _currentSpeed = GameController.Controller.Config.LevelSpeed[_currentLvlIndex];
-        _currentHealth = GameController.Controller.Config.LevelHealth[_currentLvlIndex];
+        _maxHealth = GameController.Controller.Config.LevelHealth[_currentLvlIndex];
+        _currentHealth = _maxHealth;
         LevelSkin[_currentLvlIndex].SetActive(true);
 
-        Bar.SetTextHealth(_currentHealth);
+        Bar.UpdateMaxHealth(_currentHealth, _maxHealth);
+        Bar.UpdateCurrentHealth(_currentHealth);
 
         StopAllCoroutines();
         StartCoroutine(SetSize(Vector3.one * GameController.Controller.Config.LevelSize[_currentLvlIndex]));
@@ -267,8 +271,11 @@ public class CharacterBehaviour : MonoBehaviour
 
     public void SetDamage(float dmg)
     {
+        if (!_isLife)
+            return;
+
         _currentHealth -= dmg;
-        Bar.SetTextHealth(_currentHealth);
+        Bar.UpdateCurrentHealth(_currentHealth);
         if (_currentHealth <= 0 && _isLife)
         {
             if(NameCharacter == Constants.TAG_PLAYER)

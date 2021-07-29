@@ -8,6 +8,7 @@ public class StatusBar : MonoBehaviour
     public Transform StatusBarTransform;
     public TMP_Text TextName;
     public TMP_Text TextHealth;
+    public RectTransform RectHralthBar;
 
     private float OffsetLeft => GameController.Controller.ControllerUI.OffsetLeft.position.x;
     private float OffsetRight => GameController.Controller.ControllerUI.OffsetRight.position.x;
@@ -15,17 +16,27 @@ public class StatusBar : MonoBehaviour
     private float OffsetBottom => GameController.Controller.ControllerUI.OffsetBottom.position.y;
 
     private Transform _targetChatacter;
+    private float _maxHealth;
 
-    public void Init(Transform targetChatacter, string name, float health)
+    public void Init(Transform targetChatacter, string name, float currentHealth, float maxHealth)
     {
+        _maxHealth = maxHealth;
         _targetChatacter = targetChatacter;
         TextName.text = name;
-        SetTextHealth(health);
+        UpdateCurrentHealth(currentHealth);
     }
 
-    public void SetTextHealth(float health)
+    public void UpdateMaxHealth(float currentHealth, float maxHealth)
     {
-        TextHealth.text = health.ToString("F");
+        _maxHealth = maxHealth;
+        UpdateHealthBar(_maxHealth, currentHealth);
+    }
+
+
+    public void UpdateCurrentHealth(float health)
+    {
+        // TextHealth.text = health.ToString("F");
+        UpdateHealthBar(_maxHealth, health);
     }
     
     void Update()
@@ -50,5 +61,13 @@ public class StatusBar : MonoBehaviour
     {
         gameObject.SetActive(false);
         Destroy(gameObject);
+    }
+
+    public void UpdateHealthBar(float maxHealth, float currentHealth)
+    {
+        RectHralthBar.localScale = new Vector3(
+            Mathf.Clamp(currentHealth / maxHealth, 0, 1),
+            1,
+            1);
     }
 }
