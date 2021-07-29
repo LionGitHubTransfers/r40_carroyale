@@ -183,6 +183,7 @@ MonoBehaviour:
   TimeLifeFragment: 3
   DelayRing: 5
   SpeedRing: 3
-  DamageRing: 5
+  DamageRing: 15
   SpeedRotationWheel: -400
   VelocityFragments: 10
+  MinRadiusRing: 30

@@ -105,8 +105,9 @@ public class CharacterBehaviour : MonoBehaviour
     public void CheckInRing()
     {
 
-        float a = Mathf.Pow(_characterTransform.position.x, 2) + Mathf.Pow(_characterTransform.position.z, 2);
-        float b = Mathf.Pow(RadiusRing, 2);
+        //float a = Mathf.Pow(_characterTransform.position.x, 2) + Mathf.Pow(_characterTransform.position.z, 2);
+        //float b = Mathf.Pow(RadiusRing, 2);
+
        // if (Mathf.Pow(_characterTransform.position.x, 2) + Mathf.Pow(_characterTransform.position.z, 2) >= Mathf.Pow(RadiusRing,2))
         if (Mathf.Pow(_characterTransform.position.x, 2) + Mathf.Pow(_characterTransform.position.z, 2) >= Mathf.Pow(RadiusRing,2))
             SetDamage(GameController.Controller.Config.DamageRing * Time.deltaTime);

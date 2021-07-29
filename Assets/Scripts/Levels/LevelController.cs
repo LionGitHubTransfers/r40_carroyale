@@ -72,7 +72,7 @@ public class LevelController : MonoBehaviour
     {
         yield return new WaitForSeconds(GameController.Controller.Config.DelayRing);
 
-        while(RadiusRing > 0)
+        while(RadiusRing >= GameController.Controller.Config.MinRadiusRing)
         {
             RadiusRing -= Time.deltaTime * GameController.Controller.Config.SpeedRing;
             TaperingRing.SetRadius(RadiusRing);

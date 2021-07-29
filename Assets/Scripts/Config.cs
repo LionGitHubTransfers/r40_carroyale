@@ -39,4 +39,5 @@ public class Config : ScriptableObject
     public float SpeedRotationWheel = -10f;
 
     public float VelocityFragments = 10f;
+    public float MinRadiusRing = 45f;
 }
