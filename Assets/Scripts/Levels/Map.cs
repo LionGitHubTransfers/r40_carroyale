@@ -135,8 +135,9 @@ public class Map : MonoBehaviour
     {
         foreach(CharacterBehaviour c in _characters)
         {
-            if(c.IsLife)
-                c.DestroyCgaracter();
+            c.DestroyStatusBar();
+            //if(c.IsLife)
+            //    c.DestroyCgaracter();
         }
 
         Destroy(gameObject);

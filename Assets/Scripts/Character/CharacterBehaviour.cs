@@ -70,7 +70,7 @@ public class CharacterBehaviour : MonoBehaviour
 
         _characterGameObject = gameObject;
         _characterTransform = transform;
-        _isLife = true;
+        //_isLife = true;
 
         Bar = Instantiate(GameController.Controller.Config.StatusBarCharacter, GameController.Controller.ControllerUI.ContainerCharacterStatusBar);
         Bar.Init(PointStatusBar, name, _currentHealth);
@@ -283,7 +283,8 @@ public class CharacterBehaviour : MonoBehaviour
     public virtual void DestroyCgaracter()
     {
         _isLife = false;
-        Bar.DestroyStatusBar();
+        // Bar.DestroyStatusBar();
+        DestroyStatusBar();
 
         for (int i = 0; i <= _currentLvlIndex; i++)
             if(i< FragmentGroups.Count)
@@ -294,5 +295,14 @@ public class CharacterBehaviour : MonoBehaviour
         CharController.enabled = false;
         WeaponGroups.SetActive(false);
 
+    }
+
+    public void DestroyStatusBar()
+    {
+        if (Bar == null)
+            return;
+
+        Bar.DestroyStatusBar();
+        Bar = null;
     }
 }

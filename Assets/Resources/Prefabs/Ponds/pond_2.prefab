@@ -81,6 +81,85 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3351396336242043216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6457122975643479367}
+  m_Layer: 0
+  m_Name: Colliders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6457122975643479367
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351396336242043216}
+  m_LocalRotation: {x: -0.000000021855694, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 216591787039187708}
+  - {fileID: 771182742852117706}
+  - {fileID: 8112348865622644026}
+  - {fileID: 2636220716600693161}
+  m_Father: {fileID: 6232776683886161632}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5157499285227101667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 771182742852117706}
+  - component: {fileID: 7860889173646644180}
+  m_Layer: 0
+  m_Name: Capsule (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &771182742852117706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5157499285227101667}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.4, y: 20, z: -13.6}
+  m_LocalScale: {x: 12, y: 33.58, z: 12}
+  m_Children: []
+  m_Father: {fileID: 6457122975643479367}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &7860889173646644180
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5157499285227101667}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6716157817741341786
 GameObject:
   m_ObjectHideFlags: 0
@@ -111,9 +190,145 @@ Transform:
   - {fileID: 1827740720157877406}
   - {fileID: 6367143998375891442}
   - {fileID: 5094316472416212861}
+  - {fileID: 6457122975643479367}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7292802892091594900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2636220716600693161}
+  - component: {fileID: 8458800631967958893}
+  m_Layer: 0
+  m_Name: Capsule (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2636220716600693161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7292802892091594900}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.5, y: 20, z: 12.4}
+  m_LocalScale: {x: 18, y: 33.58, z: 18}
+  m_Children: []
+  m_Father: {fileID: 6457122975643479367}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &8458800631967958893
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7292802892091594900}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7446466845785007232
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8112348865622644026}
+  - component: {fileID: 3796287286445891637}
+  m_Layer: 0
+  m_Name: Capsule (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8112348865622644026
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7446466845785007232}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.7, y: 20, z: 3.4}
+  m_LocalScale: {x: 24, y: 33.58, z: 24}
+  m_Children: []
+  m_Father: {fileID: 6457122975643479367}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &3796287286445891637
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7446466845785007232}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &7740163018108752898
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 216591787039187708}
+  - component: {fileID: 5088692159799905836}
+  m_Layer: 0
+  m_Name: Capsule (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &216591787039187708
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7740163018108752898}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.6, y: 20, z: -13.3}
+  m_LocalScale: {x: 12, y: 33.58, z: 12}
+  m_Children: []
+  m_Father: {fileID: 6457122975643479367}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &5088692159799905836
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7740163018108752898}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7996694127253678486
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,8 +511,8 @@ MonoBehaviour:
   intersectionEffectsExpanded: 0
   planarReflectionsExpanded: 0
   causticsExpanded: 0
-  reflectionStrength: 0.781
-  reflectionFresnel: 2.5
+  reflectionStrength: 0
+  reflectionFresnel: 0
   causticsStrength: 2.09
   causticsTexture: {fileID: 2800000, guid: f2c40b951cee11943a1f6d5ec1b42f2c, type: 3}
   causticsSplit: 0.318
@@ -353,19 +568,19 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  colorGradientTexture: {fileID: 0}
-  shallowColor: {r: 0, g: 0.77254903, b: 0.62352943, a: 1}
-  deepColor: {r: 0.011764706, g: 0.2862705, b: 0.50980073, a: 1}
-  colorDepth: 0.8
-  horizonColor: {r: 0, g: 0.227375, b: 0.8, a: 1}
+  colorGradientTexture: {fileID: 2800000, guid: 51a245b3b15e29c4091ec6cc51e1da03, type: 3}
+  shallowColor: {r: 0.14017344, g: 0.5041816, b: 0.8490566, a: 0.99215686}
+  deepColor: {r: 0.25110608, g: 0.2890422, b: 0.9339623, a: 0.39607844}
+  colorDepth: 2.65
+  horizonColor: {r: 0, g: 0.22715423, b: 0.8, a: 1}
   horizonDistance: 20
   shoreFade: 1
-  shoreColor: {r: 0, g: 0.98039216, b: 0.3018848, a: 0}
+  shoreColor: {r: 0.82382524, g: 0.9339623, b: 0.85774744, a: 0}
   shoreStrength: 0
   shoreBlend: 1
   shoreDepth: 0.74
   waveColor: {r: 0, g: 0, b: 0, a: 0}
-  underwaterColor: {r: 0.20384955, g: 0.3097279, b: 0.517647, a: 0}
+  underwaterColor: {r: 0.20364028, g: 0.30950713, b: 0.517647, a: 0}
   underwaterColorStrength: 0
   underwaterRefractionStrength: 0.099
   surfaceFoamTexture: {fileID: 2800000, guid: d3b0d77dfe711a04c8ff18ecc260aa66, type: 3}
@@ -373,8 +588,8 @@ MonoBehaviour:
   surfaceFoamCutoff: 0.744
   surfaceFoamDistortion: 1.64
   surfaceFoamBlend: 1
-  surfaceFoamColor1: {r: 1, g: 1, b: 1, a: 0.3215686}
-  surfaceFoamColor2: {r: 1, g: 1, b: 1, a: 0.7294118}
+  surfaceFoamColor1: {r: 1, g: 1, b: 1, a: 0.2901961}
+  surfaceFoamColor2: {r: 1, g: 1, b: 1, a: 0.1764706}
   surfaceFoamMovement: {x: 0.7, y: 0, z: 0.47, w: 0.01}
   surfaceFoamDirection1: 0.7
   surfaceFoamDirection2: 0.47
@@ -394,9 +609,9 @@ MonoBehaviour:
   surfaceFoamShadowProjection: 15
   intersectionFoamShadowProjection: 4.6
   foamMovement: 0
-  intersectionFoamDepth: 0.72
+  intersectionFoamDepth: 0.17
   intersectionFoamTexture: {fileID: 2800000, guid: 772031b03d9d46e4ab03e15c8e17718c, type: 3}
-  intersectionFoamColor: {r: 0.2877265, g: 0.45821667, b: 1, a: 1}
+  intersectionFoamColor: {r: 1, g: 1, b: 1, a: 1}
   intersectionFoamMovement: {x: 0, y: 0}
   intersectionFoamDirection: 0
   intersectionFoamSpeed: 0
@@ -413,14 +628,14 @@ MonoBehaviour:
   shoreFoamBreakupStrength: 0
   shoreFoamBreakupScale: 0
   lighting: 0
-  lightingSmoothness: 0.71
+  lightingSmoothness: 0.8
   lightingSpecularColor: {r: 1, g: 1, b: 1, a: 0}
   lightingDiffuseColor: {r: 0, g: 0, b: 0, a: 0}
   lightingHardness: 0
   normalsTexture: {fileID: 2800000, guid: a41da5f5671718b47bbc71e9ef691103, type: 3}
-  normalsMovement: {x: 0.04, y: 0.36}
-  normalsStrength: 0.42
-  normalsScale: 0.36
+  normalsMovement: {x: 0.04, y: 0.4}
+  normalsStrength: 0.163
+  normalsScale: 0.4
   normalsSpeed: 0.04
   refractionStrength: 0.022
   waveVisuals: {x: 0, y: 7.05, z: 1.38}
