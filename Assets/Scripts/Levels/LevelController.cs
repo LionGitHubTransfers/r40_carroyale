@@ -18,9 +18,12 @@ public class LevelController : MonoBehaviour
     public List<string> ListNameEnemies { get; private set; } = new List<string>();
     private int _countEnemes;
 
+    private int _currentLevelIndex;
+
     public void LoadLevel(int levelIndex)
     {
-        if(_curentMap != null)
+        _currentLevelIndex = levelIndex;
+        if (_curentMap != null)
         {
             Destroy(_curentMap.gameObject);
             _curentMap = null;
@@ -39,6 +42,8 @@ public class LevelController : MonoBehaviour
         IsRaceProgress = true;
 
         StopAllCoroutines();
+
+        IntegrationManager.Instance.OnLevelStart(levelIndex +1);
     }
 
     public void StartRace()
@@ -82,6 +87,7 @@ public class LevelController : MonoBehaviour
 
     public void Loos()
     {
+        IntegrationManager.Instance.OnLevelFail(_currentLevelIndex + 1);
         StopAllCoroutines();
         StopRace();
         _curentMap.Loos();
@@ -89,6 +95,7 @@ public class LevelController : MonoBehaviour
 
     public void Finish()
     {
+        IntegrationManager.Instance.OnLevelFinish(_currentLevelIndex + 1);
         IsRaceProgress = false;
         StopAllCoroutines();
         StopRace();
