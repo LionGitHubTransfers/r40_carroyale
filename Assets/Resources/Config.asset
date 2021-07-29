@@ -181,7 +181,7 @@ MonoBehaviour:
   GravitySimple: -1
   Gravity: -8
   TimeLifeFragment: 3
-  DelayRing: 9
+  DelayRing: 1000
   SpeedRing: 3
   DamageRing: 15
   SpeedRotationWheel: -400

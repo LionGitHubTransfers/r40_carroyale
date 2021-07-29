@@ -37,7 +37,7 @@ public class LevelController : MonoBehaviour
 
         GameController.Controller.ControllerUI.ShowTapToStart();
 
-        _countEnemes = 2;
+        _countEnemes = 4;
         ListNameEnemies.Clear();
         IsRaceProgress = true;
 

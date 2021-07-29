@@ -9,6 +9,9 @@ public class CharacterBehaviour : MonoBehaviour
     public CharacterController CharController;
     public GameObject WeaponGroups;
     public Transform PointStatusBar;
+    public ParticleSystem EffectPutItem;
+    public List<ParticleSystem> ListEffectEmojiWin;
+    public List<ParticleSystem> ListEffectEmojiFail;
 
     public Transform RightWheel_1;
     public Transform RightWheel_2;
@@ -51,7 +54,7 @@ public class CharacterBehaviour : MonoBehaviour
     private void Start()
     {
         // Init();
-       //CharController.attachedRigidbody.constraints = RigidbodyConstraints.FreezePositionY;
+        //CharController.attachedRigidbody.constraints = RigidbodyConstraints.FreezePositionY;
     }
 
     public virtual void Init(string name)
@@ -92,6 +95,12 @@ public class CharacterBehaviour : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.W))
+            StartEffectEmojiWin();
+
+        if (Input.GetKeyDown(KeyCode.S))
+            StartEffectEmojiFail();
+
         if (_isLife)
         {
             UpdateCharacter();
@@ -110,8 +119,8 @@ public class CharacterBehaviour : MonoBehaviour
         //float a = Mathf.Pow(_characterTransform.position.x, 2) + Mathf.Pow(_characterTransform.position.z, 2);
         //float b = Mathf.Pow(RadiusRing, 2);
 
-       // if (Mathf.Pow(_characterTransform.position.x, 2) + Mathf.Pow(_characterTransform.position.z, 2) >= Mathf.Pow(RadiusRing,2))
-        if (Mathf.Pow(_characterTransform.position.x, 2) + Mathf.Pow(_characterTransform.position.z, 2) >= Mathf.Pow(RadiusRing,2))
+        // if (Mathf.Pow(_characterTransform.position.x, 2) + Mathf.Pow(_characterTransform.position.z, 2) >= Mathf.Pow(RadiusRing,2))
+        if (Mathf.Pow(_characterTransform.position.x, 2) + Mathf.Pow(_characterTransform.position.z, 2) >= Mathf.Pow(RadiusRing, 2))
             SetDamage(GameController.Controller.Config.DamageRing * Time.deltaTime);
         //(x - center_x) ^ 2 + (y - center_y) ^ 2 < radius ^ 2
     }
@@ -165,10 +174,10 @@ public class CharacterBehaviour : MonoBehaviour
 
         if (other.tag == Constants.TAG_CHARACTER)
         {
-            if(other.gameObject != _characterGameObject)
+            if (other.gameObject != _characterGameObject)
             {
                 var character = other.GetComponent<CharacterBehaviour>();
-                character.SetDamage(_currentDamage);
+                character.SetDamage(_currentDamage, this);
             }
         }
     }
@@ -197,23 +206,33 @@ public class CharacterBehaviour : MonoBehaviour
             if (other.gameObject != _characterGameObject)
             {
                 var character = other.GetComponent<CharacterBehaviour>();
-                character.SetDamage(_currentDamage * Time.deltaTime);
+                character.SetDamage(_currentDamage * Time.deltaTime, this);
             }
         }
     }
 
     protected bool PutItem(Item item)
     {
+        bool flag;
         if (item.IdWeapont == -1)
         {
             if (_currentLvlIndex >= LevelSkin.Count - 1)
                 return false;
 
             SetArmor();
+            EffectPutItem.Play();
             return true;
         }
 
-        return SetWeapon(item);
+        if (SetWeapon(item))
+        {
+            EffectPutItem.Play();
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     private void SetArmor()
@@ -269,7 +288,7 @@ public class CharacterBehaviour : MonoBehaviour
         CharController.transform.localScale = targetSize;
     }
 
-    public void SetDamage(float dmg)
+    public void SetDamage(float dmg, CharacterBehaviour other = null)
     {
         if (!_isLife)
             return;
@@ -278,10 +297,15 @@ public class CharacterBehaviour : MonoBehaviour
         Bar.UpdateCurrentHealth(_currentHealth);
         if (_currentHealth <= 0 && _isLife)
         {
-            if(NameCharacter == Constants.TAG_PLAYER)
+            if (NameCharacter == Constants.TAG_PLAYER)
                 GameController.Controller.Loos();
             else
                 GameController.Controller.ControllerLevel.DeathCharacter(this);
+
+            StartEffectEmojiFail();
+
+            if(other != null)
+                other.StartEffectEmojiWin();
 
             DestroyCgaracter();
         }
@@ -294,7 +318,7 @@ public class CharacterBehaviour : MonoBehaviour
         DestroyStatusBar();
 
         for (int i = 0; i <= _currentLvlIndex; i++)
-            if(i< FragmentGroups.Count)
+            if (i < FragmentGroups.Count)
                 foreach (Fragment fg in FragmentGroups[i].Fragments)
                     fg.Init();
 
@@ -311,5 +335,15 @@ public class CharacterBehaviour : MonoBehaviour
 
         Bar.DestroyStatusBar();
         Bar = null;
+    }
+
+    public void StartEffectEmojiWin()
+    {
+        ListEffectEmojiWin[UnityEngine.Random.Range(0, ListEffectEmojiWin.Count)].Play();
+    }
+
+    public void StartEffectEmojiFail()
+    {
+        ListEffectEmojiFail[UnityEngine.Random.Range(0, ListEffectEmojiFail.Count)].Play();
     }
 }
