@@ -145,7 +145,8 @@ public class CharacterBehaviour : MonoBehaviour
 
         CharController.Move(direction * _currentSpeed * Time.deltaTime);
 
-        Bar.UpdatePosition();
+        if(Bar!=null)
+            Bar.UpdatePosition();
     }
 
     private void OnTriggerEnter(Collider other)

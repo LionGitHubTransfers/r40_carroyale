@@ -33,15 +33,16 @@ public class LevelController : MonoBehaviour
         if (levelIndex == 0)
         {
             _delayRing = 10000;
-            RadiusRing = 65;
+           // RadiusRing = 65;
             _curentMap = Instantiate(GameController.Controller.Config.LevelTutorial, transform);
         }
         else
         {
             _delayRing = GameController.Controller.Config.DelayRing;
-            RadiusRing = GameController.Controller.Config.RadiusRing.Evaluate(levelIndex);
             _curentMap = Instantiate(GameController.Controller.Config.LevelMaps[0], transform);
         }
+
+        RadiusRing = GameController.Controller.Config.RadiusRing.Evaluate(levelIndex);
 
         _curentMap.Init(levelIndex);
 
