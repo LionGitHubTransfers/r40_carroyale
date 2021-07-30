@@ -28,10 +28,10 @@ public class UiController : MonoBehaviour
         HidePanels();
     }
 
-    public void LoadLevel()
-    {
-        TapToStart.SetActive(true);
-    }
+    //public void LoadLevel()
+    //{
+    //    TapToStart.SetActive(true);
+    //}
     
     public void ShowTapToStart()
     {

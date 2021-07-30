@@ -20,7 +20,7 @@ public class Map : MonoBehaviour
 
     private List<CharacterBehaviour> _characters;
 
-    public void Init(int level)
+    public void Init(int levelIndex)
     {
         foreach (ObstacleCellGroup cells in ObstacleGroups)
         {
@@ -62,7 +62,7 @@ public class Map : MonoBehaviour
         //    randomIndex[k] = randomIndex[nn];
         //    randomIndex[nn] = value;
         //}
-        int tempCountCharacher = 2 + 1;
+        int tempCountCharacher = (int)GameController.Controller.Config.CountEnemies.Evaluate(levelIndex) + 1;
 
         int[] randomIndex = GetRandomIndex(ListSpawnPoints.Count);
         int[] randomIndexNames = GetRandomIndex(GameController.Controller.Config.ListNames.Count);

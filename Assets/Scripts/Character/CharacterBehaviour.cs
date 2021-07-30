@@ -50,6 +50,7 @@ public class CharacterBehaviour : MonoBehaviour
     private StatusBar Bar;
     public string NameCharacter { get; private set; }
 
+    private int _countPutItem = 0;
 
     private void Start()
     {
@@ -95,11 +96,11 @@ public class CharacterBehaviour : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
-            StartEffectEmojiWin();
+        //if (Input.GetKeyDown(KeyCode.W))
+        //    StartEffectEmojiWin();
 
-        if (Input.GetKeyDown(KeyCode.S))
-            StartEffectEmojiFail();
+        //if (Input.GetKeyDown(KeyCode.S))
+        //    StartEffectEmojiFail();
 
         if (_isLife)
         {
@@ -213,7 +214,13 @@ public class CharacterBehaviour : MonoBehaviour
 
     protected bool PutItem(Item item)
     {
-        bool flag;
+        if(GameController.Controller.CurrentLevelIndex == 0)
+        {
+            _countPutItem++;
+            if (_countPutItem >= 3)
+                GameController.Controller.ControllerLevel.Finish();
+        }
+
         if (item.IdWeapont == -1)
         {
             if (_currentLvlIndex >= LevelSkin.Count - 1)

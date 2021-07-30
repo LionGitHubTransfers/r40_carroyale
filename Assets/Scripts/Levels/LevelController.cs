@@ -19,6 +19,7 @@ public class LevelController : MonoBehaviour
     private int _countEnemes;
 
     private int _currentLevelIndex;
+    private float _delayRing;
 
     public void LoadLevel(int levelIndex)
     {
@@ -29,21 +30,35 @@ public class LevelController : MonoBehaviour
             _curentMap = null;
         }
 
-        _curentMap = Instantiate(GameController.Controller.Config.LevelMaps[0], transform);
+        if (levelIndex == 0)
+        {
+            _delayRing = 10000;
+            RadiusRing = 65;
+            _curentMap = Instantiate(GameController.Controller.Config.LevelTutorial, transform);
+        }
+        else
+        {
+            _delayRing = GameController.Controller.Config.DelayRing;
+            RadiusRing = GameController.Controller.Config.RadiusRing.Evaluate(levelIndex);
+            _curentMap = Instantiate(GameController.Controller.Config.LevelMaps[0], transform);
+        }
+
         _curentMap.Init(levelIndex);
 
-        RadiusRing = GameController.Controller.Config.RadiusRing.Evaluate(levelIndex);
         TaperingRing.SetRadius(RadiusRing);
 
-        GameController.Controller.ControllerUI.ShowTapToStart();
+        if (GameController.Controller.CurrentLevelIndex > 0)
+            GameController.Controller.ControllerUI.ShowTapToStart();
+        else
+            StartRace();
 
-        _countEnemes = 4;
+        _countEnemes = (int)GameController.Controller.Config.CountEnemies.Evaluate(levelIndex);
         ListNameEnemies.Clear();
         IsRaceProgress = true;
 
         StopAllCoroutines();
 
-        IntegrationManager.Instance.OnLevelStart(levelIndex +1);
+        IntegrationManager.Instance.OnLevelStart(levelIndex + 1);
     }
 
     public void StartRace()
@@ -75,9 +90,9 @@ public class LevelController : MonoBehaviour
 
     private IEnumerator MoveRing()
     {
-        yield return new WaitForSeconds(GameController.Controller.Config.DelayRing);
+        yield return new WaitForSeconds(_delayRing);
 
-        while(RadiusRing >= GameController.Controller.Config.MinRadiusRing)
+        while (RadiusRing >= GameController.Controller.Config.MinRadiusRing)
         {
             RadiusRing -= Time.deltaTime * GameController.Controller.Config.SpeedRing;
             TaperingRing.SetRadius(RadiusRing);

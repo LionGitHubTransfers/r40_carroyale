@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
     private int _countSpawnArmor = 0;
     private int _countSpawnWeapon = 0;
 
+    public int CurrentLevelIndex { get; internal set; }
+
     private void Awake()
     {
         if (Controller == null)
@@ -27,9 +29,24 @@ public class GameController : MonoBehaviour
     }
     private void Start()
     {
+        CurrentLevelIndex = PlayerPrefs.GetInt(Constants.TAG_CURRENT_LEVEL, 0);
+
         ControllerUI.Init();
-        LoadLevel(0);
-       // ControllerLevel.LoadLevel(0);
+        LoadLevel(CurrentLevelIndex);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            CurrentLevelIndex = 0;
+            PlayerPrefs.SetInt(Constants.TAG_CURRENT_LEVEL, CurrentLevelIndex);
+            LoadLevel(CurrentLevelIndex);
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            Continue();
+        }
     }
 
     public Item GetItem()
@@ -54,12 +71,14 @@ public class GameController : MonoBehaviour
 
     public void Restart()
     {
-        LoadLevel(0);
+        LoadLevel(CurrentLevelIndex);
     }
 
     public void Continue()
     {
-        LoadLevel(0);
+        CurrentLevelIndex++;
+        PlayerPrefs.SetInt(Constants.TAG_CURRENT_LEVEL, CurrentLevelIndex);
+        LoadLevel(CurrentLevelIndex);
     }
 
     public void Loos()
@@ -70,6 +89,7 @@ public class GameController : MonoBehaviour
 
     public void Finish(List<string> liders)
     {
+        PlayerPrefs.SetInt(Constants.TAG_CURRENT_LEVEL, CurrentLevelIndex +1);
         ControllerUI.LevelCompleted(liders);
     }
 }

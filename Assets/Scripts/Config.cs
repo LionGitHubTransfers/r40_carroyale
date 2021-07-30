@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Config", menuName = "R40/Config")]
 public class Config : ScriptableObject
 {
+    public Map LevelTutorial;
     public List<Map> LevelMaps;
 
     public List<float> LevelDamage = new List<float>() { 10, 20, 30, 40, 50 };

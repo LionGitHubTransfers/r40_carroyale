@@ -4,4 +4,6 @@ public static class Constants
     public const string TAG_ITEM = "Item";
     public const string TAG_PLAYER = "Player";
     public const string TAG_CHARACTER = "Character";
+    public const string TAG_CURRENT_LEVEL = "CurrentLevel";
+    public const string TAG_PASSED_LEVEL = "PassedLevels";
 }
