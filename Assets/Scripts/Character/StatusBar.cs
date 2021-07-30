@@ -38,8 +38,13 @@ public class StatusBar : MonoBehaviour
         // TextHealth.text = health.ToString("F");
         UpdateHealthBar(_maxHealth, health);
     }
-    
-    void Update()
+
+    private void Update()
+    {
+        
+    }
+
+    public void UpdatePosition()
     {
         var screenPos = GameController.Controller.ControllerUI.MainCamera.WorldToScreenPoint(_targetChatacter.position);
 

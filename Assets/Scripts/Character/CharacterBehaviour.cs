@@ -144,6 +144,8 @@ public class CharacterBehaviour : MonoBehaviour
             direction.y = GameController.Controller.Config.Gravity;
 
         CharController.Move(direction * _currentSpeed * Time.deltaTime);
+
+        Bar.UpdatePosition();
     }
 
     private void OnTriggerEnter(Collider other)

@@ -86,6 +86,12 @@ public class UiController : MonoBehaviour
 
             TextLider1.text = "Player";
 
+        StartCoroutine(Finish());
+    }
+    private IEnumerator Finish()
+    {
+        yield return new WaitForSeconds(1);
+
         ShowContainerResult();
     }
 }
